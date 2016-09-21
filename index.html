@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accessibility statement generator</title>
+	<style type="text/css">
+		/*body { background: #fff; color: #000; }*/
+		.requireJS { display: none;}
+		.hide { display: none; }
+		.noJS { background: #ff0; color: #000; padding: 1em; }
+		.noJS { max-width: 40em; }
+		#steps_count { width: 5em; }
+		#contactdetails { width: 25em; }
+		ol li { margin: 1em 0 1em;}
+		.grey { color: #888; background: #fff;}
+		textarea, #steps_count { font:inherit; color:black; }
+		#result { padding: 10px; border: 1px solid #000; resize: none; width:97%; font:inherit; color:black; }
+		#comment, #commentshort {width: 97%; resize:none}
+		#contact, #contactshort {min-width: 20em}
+		.nowrap { white-space: nowrap; }
+		.sectionhead {font-size:1.2em;}
+		button, .toggle
+		/* Style the label so it looks like a button */
+		 {
+ 			border: 4px outset #cccccc;
+	 		background-color: #cccccc;
+ 			position: relative;
+			z-index: 3;
+			padding: 4px;
+			float: left;
+			margin: 1em;
+			}
+		/* CSS to make the checkbox disappear (but remain functional) */
+		.toggle input {
+			visibility: hidden;
+			}
+		#tooltip {
+			z-index: 3000;
+			border: 1px solid #111;
+			background-color: #eee;
+			padding: 5px;
+			opacity: 0.85;
+		}
+		#tooltip h3, #tooltip div { margin: 0; }
+		#tooltip h3 {font:inherit}
+		.clear {clear: left;}
+		.tooltipindicator {
+     			margin-left: 0.2em;
+			text-align: center;
+ 			width: 1.4em;
+			height:1.4em;
+			font-weight: bold;
+     			display: inline-block;
+ 			background: #10a;
+			color: #fff;
+			-moz-border-radius: 50%;
+			-khtml-border-radius: 50%;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+			font-size: 80%;
+			vertical-align: super;
+  		  }
+		
+	</style>
+	<!--[if IE]><style>
+		.nowrap { white-space: normal; display: inline-block; }
+		.toggle input {visibility: visible; height: 0; width: 0; padding:0; margin:0; top:-1000px}		 	
+	</style> <![endif]-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="jquery.tooltip.js"></script>
+	<script src="generator.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<h1>Accessibility statement generator</h1>
+
+<div id="intro">
+
+	<p>This is an accessibility statement generator designed to provide clear and concise access information for events held within the University or elsewhere. Just fill in the information you have, hit generate and then copy the text produced (which you can edit in place) to wherever you need it. Having clear information is very important for an event to be as accessible as possible - if you don't know you can get into an event then you may just not bother trying, no event is truely accessible without the information to say that it is!</p>
+	<p>There are two versions that you can click through to use, we encourage you to use the standard version (the one displayed by default) but if you want to use a shorter version just click through, you can ignore the other comments and contact details boxes, though we do encourage you to have some contact details in case of questions somewhere on you material. If you'd like to use this generator on your own site then you are very welcome to, various versions are available <a href="https://github.com/numberland/Access-info">on github</a>.</p>
+	<p><strong>Even these questions are not necessarilly complete in terms of providing comprehensive access information (for instance if a venue has ramps which are the two narrow ramps these are suitable only for manual wheelchairs not powerchairs and many wheelchair users prefer to avoid them regardless. Please think about other details you might want to add in the further comments section.</strong></p>
+	
+	<h2>Comments and Bugs</h2>
+	<p>If you have any comments, suggestions or bugs please <a href="https://github.com/cusu/accessibility-statement-generator/issues">let us know</a>. We would particularly be interested in knowing any ways in which the questions don't cover your access requirements or any bugs you've found (we are aware there are some issues in IE 8 or below and hope to fix these soon).</p>
+	
+</div>
+
+<!-- noscript doesn't play well with some JS blockers -->
+<div class="noJS">
+Please enable Javascript.
+</div>
+
+<div class="requireJS">
+
+	<!--The buttons at the top-->
+	<div id="buttons">
+		
+			<div class="toggle">
+				<label for="greyed">
+				<span class="unselected">Show inactive questions</span><span class="selected">Hide inactive questions</span></label>
+				<input type="checkbox" name="toggled" id="greyed" value="1" />
+			</div>
+			<div class="toggle">
+				<label for="type">
+				<span class="unselected">Go to short version</span><span class="selected">Go to standard version</span></label>
+				<input type="checkbox" name="toggled" id="type" value="1" />
+			</div>
+
+		<div class="clear"></div>
+	</div>
+	<!--The set of questions for the standard version of the form-->
+	<div id="questions" class="questions">
+
+		<div>
+			<strong class="sectionhead">Access to the venue:</strong>
+			<table>
+				<tr id="access"><td><label>Does the venue have:</label>
+					<input type="radio" name="access" value="wa" id="access_wa" />
+					<label for="access_wa">Wheelchair access<span title="Wheelchair access requires flat access (no lips), no very steep ramps or narrow doorways as well as space for wheelchair user in the room.">(?)</span></label>
+					<input type="radio" name="access" value="sf" id="access_sf"/>
+					<label for="access_sf">Step-free access only<span title="e.g. There is a significant lip into the room or there is a narrow doorway">(?)</span></label>	
+					<input type="radio" name="access" value="no" id="access_no"/>
+					<label for="access_no">No step-free access</label>
+					<input type="radio" name="access" value="" id="access_"/>
+					<label for="access_">Unknown</label>
+				</td></tr>
+				<tr><td><div id="separateaccess" class="hide">
+					<input type="checkbox" name="separateaccess" value="route" id="separateaccess_y"/><label for="separateaccess_y">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label>
+				</div></td></tr>
+			</table>
+		</div>
+		<div id="steps" class="hide">
+			<table>
+				<strong class="sectionhead">Steps:</strong>
+				<tr>
+					<td><label for="steps_count">Approximately how many steps<span id="separateshow"> into the main entrance</span>?<span title="Give a number of steps or a number of flights of stairs for instance. If there is separate step free access please describe the main route.">(?)</span></label></td>
+					<td><span class="nowrap">
+						<input type="text" id="steps_count" name="steps_count"/>
+					</span></td>
+				</tr>
+				<tr>
+					<td><label for="steps_height">How high are the steps?</label></td>
+					<td id="steps_height">
+						<input type="radio" name="steps" value="lip" id="lip" /><label for="steps_height_lip">a lip/lips</label>
+						<input type="radio" name="steps" value="shallow" id="shallow"/><label for="shallow">shallow</label>
+						<input type="radio" name="steps" value="standard height" id="standard height"/><label for="standard height">approximately standard height</label>
+						<input type="radio" name="steps" value="deep" id="deep"/><label for="deep">deep</label>
+						<input type="radio" name="steps" value="" id="steps_height_"/><label for="steps_height_">unknown</label>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="steps_hr">Is there a handrail?</label></td>
+					<td id="steps_hr">
+						<input type="radio" name="steps_hr" value="no" id="steps_hr_no"/><label for="steps_hr_no">no</label>
+						<input type="radio" name="steps_hr" value="one" id="steps_hr_one" /><label for="steps_hr_one">on one side</label>
+						<input type="radio" name="steps_hr" value="both" id="steps_hr_both"/><label for="steps_hr_both">on boths sides<span title="narrow stairs so that someone can hold both at the same time, not a wide flight with one each side">(?)</span></label>
+						<input type="radio" name="steps_hr" value="" id="steps_hr_"/><label for="steps_hr_">unknown</label>
+				</td>
+				</tr>
+			</table>
+		</div>
+			
+		<div><strong class="sectionhead">Facilities:</strong> Which of the following are available?</div>			
+			<table><tr id="seat"><td><label>Seating?</label></td>
+				<td>
+				<input type="radio" name="seat" value="yp" id="seat_yp" /><label for="seat_yp">yes - padded/comfortable</label>
+				<input type="radio" name="seat" value="yn" id="seat_yb"/><label for="seat_yb">yes - basic chairs</label>
+				<input type="radio" name="seat" value="y" id="seat_y"/><label for="seat_y">yes - unknown type</label>
+				<input type="radio" name="seat" value="n" id="seat_n"/><label for="seat_n">no</label>
+				<input type="radio" name="seat" value="" id="seat_"/><label for="seat_">unknown</label></td></tr>
+			<tr id="wheelchairtoilet"><td><label>Wheelchair accessible toilet?</label></td>
+				<td><input type="radio" name="wheelchairtoilet" value="y" id="wheelchairtoilet_y"/><label for="wheelchairtoilet_y">yes</label>
+				<input type="radio" name="wheelchairtoilet" value="p" id="wheelchairtoilet_p"/><label for="wheelchairtoilet_p">partially accessible toilet<span title="For instance a toilet that is not large enough for a wheelchair to move around in or which is big enough but doesn't have any grab rails">(?)</span></label>
+				<input type="radio" name="wheelchairtoilet" value="n" id="wheelchairtoilet_n"/><label for="wheelchairtoilet_n">no</label>
+				<input type="radio" name="wheelchairtoilet" value="" id="wheelchairtoilet_"/><label for="wheelchairtoilet_">unknown</label>
+			</td></tr>
+			<tr id="genderneutraltoilet"><td><label>Gender neutral toilet?<span title="at most events <D-d>this would be a single cubicle facility">(?)</span></label>
+			</td><td>
+				<input type="radio" name="genderneutraltoilet" value="y" id="genderneutraltoilet_y"/><label for="genderneutraltoilet_y">yes</label>
+				<input type="radio" name="genderneutraltoilet" value="n" id="genderneutraltoilet_n"/><label for="genderneutraltoilet_n">no</label>
+				<input type="radio" name="genderneutraltoilet" value="" id="genderneutraltoilet_"/><label for="genderneutraltoilet_">unknown</label>
+			</td></tr>
+			<tr id="hearingloop"><td><label>Hearing loop?</label></td>
+			<td>
+				<input type="radio" name="hearingloop" value="y" id="hearingloop_y"/><label for="hearingloop_y">yes</label>
+				<input type="radio" name="hearingloop" value="n" id="hearingloop_n"/><label for="hearingloop_n">no</label>
+				<input type="radio" name="hearingloop" value="reqad" id="hearingloop_reqad"/><label for="hearingloop_reqad">by request in advance</label>
+				<input type="radio" name="hearingloop" value="req" id="hearingloop_req"/><label for="hearingloop_req">by request at the event</label>
+				<input type="radio" name="hearingloop" value="" id="hearingloop_"/><label for="hearingloop_">unknown</label>
+			</td></tr>
+			<tr id="bsl"><td><label>BSL interpretor?</label></td>
+			<td>
+				<input type="radio" name="bsl" value="y" id="bsl_y"/><label for="bsl_y">yes</label>
+				<input type="radio" name="bsl" value="n" id="bsl_n"/><label for="bsl_n">no</label>
+				<input type="radio" name="bsl" value="reqad" id="bsl_reqad"/><label for="bsl_reqad">by request in advance</label>
+				<input type="radio" name="bsl" value="req" id="bsl_req"/><label for="bsl_req">by request at the event</label>
+				<input type="radio" name="bsl" value="" id="bsl_"/><label for="bsl_">unknown</label>
+			</td></tr>
+			<tr id="quiet"><td><label>Designated quiet space?<span title="At some events people provide a space that is designated as a quiet space where people can go if they need that. Examples where this is a good idea is where the event might be very emotional or triggering or where the main event is very loud and people might need a break for any number of reasons.">(?)</span></label></td>
+			<td>
+				<input type="radio" name="quiet" value="y" id="quiet_y"/><label for="quiet_y">yes</label>
+				<input type="radio" name="quiet" value="n" id="quiet_n"/><label for="quiet_n">no</label>
+				<input type="radio" name="quiet" value="reqad" id="quiet_reqad"/><label for="quiet_reqad">by request in advance</label>
+				<input type="radio" name="quiet" value="req" id="quiet_req"/><label for="quiet_req">by request at the event</label>
+				<input type="radio" name="quiet" value="" id="quiet_"/><label for="quiet_">unknown</label>
+			</td></tr>
+			<tr id="park"><td><label>Parking nearby/onsite?</label></td>
+			<td>
+				<input type="radio" name="park" value="y" id="park_y"/><label for="park_y">yes</label>
+				<input type="radio" name="park" value="n" id="park_n"/><label for="park_n">no</label>
+				<input type="radio" name="park" value="reqad" id="park_reqad"/><label for="park_reqad">by request in advance</label>
+				<input type="radio" name="park" value="req" id="park_req"/><label for="park_req">by request at the event</label>
+				<input type="radio" name="park" value="" id="park_"/><label for="park_">unknown</label>
+			</td></tr>
+			<tr id="blue"><td><label>Blue badge parking near the venue?</label></td>
+			<td>
+				<input type="radio" name="blue" value="y" id="blue_y"/><label for="blue_y">yes</label>
+				<input type="radio" name="blue" value="n" id="blue_n"/><label for="blue_n">no</label>
+				<input type="radio" name="blue" value="reqad" id="blue_reqad"/><label for="blue_reqad">by request in advance</label>
+				<input type="radio" name="blue" value="req" id="blue_req"/><label for="blue_req">by request at the event</label>
+				<input type="radio" name="blue" value="" id="blue_"/><label for="blue_">unknown</label>
+			</td></tr></table>
+			<div id="film"><strong class="sectionhead">Film:</strong> Does this event include a video showing?
+				<input type="radio" name="film" value="y" id="film_y"/><label for="film_y">yes</label>
+				<input type="radio" name="film" value="n" id="film_n"/><label for="film_n">no</label>
+				<input type="radio" name="film" value="" id="film_"/><label for="film_">unknown</label>
+			</div>
+			<div id="filmhide" class="hide">
+				<table><tr id="sub"><td><label>Are there subtitles?</label></td>
+				<td>
+					<input type="radio" name="sub" value="y" id="sub_y"/><label for="sub_y">yes</label>
+					<input type="radio" name="sub" value="n" id="sub_n"/><label for="sub_n">no</label>
+					<input type="radio" name="sub" value="reqad" id="sub_reqad"/><label for="sub_reqad">by request in advance</label>
+					<input type="radio" name="sub" value="req" id="sub_req"/><label for="sub_req">by request at the event</label>
+					<input type="radio" name="sub" value="" id="sub_"/><label for="sub_">unknown</label>
+				</td></tr>
+				<div id="cc" class="hide">
+					<tr id="cc"><td>
+						<label>Including closed caption?<span title="Closed caption are subtitles that for those with hearing impairments, decribing noises on the film in addition to what people are saying">(?)</span></label></td>
+						<td><input type="radio" name="cc" value="y" id="cc_y"/><label for="cc_y">yes</label>
+						<input type="radio" name="cc" value="n" id="cc_n"/><label for="cc_n">no</label>
+						<input type="radio" name="cc" value="reqad" id="cc_reqad"/><label for="cc_reqad">by request in advance</label>
+						<input type="radio" name="cc" value="req" id="cc_req"/><label for="cc_req">by request at the event</label>
+						<input type="radio" name="cc" value="" id="cc_"/><label for="cc_">unknown</label>
+					</td></tr>
+				</div>
+				<tr id="audiodescription"><td><label>Is there audio description?<span title="Audio description is description of what is happening on screen for those with sight impairments">(?)</span></label></td>
+				<td>
+					<input type="radio" name="audiodescription" value="y" id="audiodescription_y"/><label for="audiodescription_y">yes</label>
+					<input type="radio" name="audiodescription" value="n" id="audiodescription_n"/><label for="audiodescription_n">no</label>
+					<input type="radio" name="audiodescription" value="reqad" id="audiodescription_reqad"/><label for="audiodescription_reqad">by request in advance</label>
+					<input type="radio" name="audiodescription" value="req" id="audiodescription_req"/><label for="audiodescription_req">by request at the event</label>
+					<input type="radio" name="audiodescription" value="" id="audiodescription_"/><label for="audiodescription_">unknown</label>
+				</td></tr>
+				<tr id="englishaudio"><td><label>English language audio?</label></td>
+				<td>
+					<input type="radio" name="englishaudio" value="y" id="englishaudio_y"/><label for="englishaudio_y">yes</label>
+					<input type="radio" name="englishaudio" value="n" id="englishaudio_n"/><label for="englishaudio_n">no</label>
+					<input type="radio" name="englishaudio" value="reqad" id="englishaudio_reqad"/><label for="englishaudio_reqad">by request in advance</label>
+					<input type="radio" name="englishaudio" value="req" id="englishaudio_req"/><label for="englishaudio_req">by request at the event</label>
+					<input type="radio" name="englishaudio" value="" id="englishaudio_"/><label for="englishaudio_">unknown</label>
+				</td></tr></table>
+			</div>
+		
+			<div><label>Any further comments?<span title="Examples of things here might be that there is a ramp but in needs putting out and who to contact or that the ramp is a split or gutter ramp which is not suitable for powerchair users, another might be that printouts of the script are available on the door (for those with hearing impairments)">(?)</span></label>
+			<div><textarea name="comment" id="comment" placeholder="Details"></textarea></div>
+			</div>
+			<div><label>Please provide contact details for any access inquiries (if not included elsewhere):</label>
+				<input type="text" id="contact" name="contact"></div>
+		</div>
+	</div>
+	<div id="shortquestions" class="questions">	
+		<strong class="sectionhead">Access to venue:</strong>
+		<div id="accessshort"><label>Does the venue have:</label>
+			<input type="radio" name="accessshort" value="wa" id="accessshort_wa" />
+			<label for="accessshort_wa">Wheelchair access<span title="Wheelchair access requires flat access (no lips), no very steep ramps or narrow doorways as well as space for wheelchair user in the room.">(?)</span></label>
+			<input type="radio" name="accessshort" value="sf" id="accessshort_sf"/>
+			<label for="accessshort_sf">Step-free access only<span title="e.g. There is a significant lip into the room or there is a narrow doorway">(?)</span></label>	
+			<input type="radio" name="accessshort" value="no" id="accessshort_no"/>
+			<label for="accessshort_no">No step-free access</label>
+			<input type="radio" name="accessshort" value="" id="accessshort_"/>
+			<label for="accessshort_">Unknown</label>
+		</div>
+		<div id="separateaccessshort" class="hide">
+			<input type="checkbox" name="separateaccessshort" value="route" id="separateaccessshort_y"/><label for="separateaccessshort_y">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label></div>
+		<div id="stepsshort" class="hide">	
+			<label for="stepsshort_data">How many steps<span id="separateshowshort"> into the main entrance</span>?<span title="Give a number of steps or a number of flights of stairs for instance, you can also state and further details (such as height; whether they are straight stairs or whether they have handrail here. If there is separate step free access please describe the main route.">(?)</span></label></td>
+			<span class="nowrap">
+				<input type="text" id="stepsshort_data" name="stepsshort_data" />
+			</span>				
+		</div>	
+		<div><strong class="sectionhead">Facilities:</strong>Which of the following are available (if relevant given e.g. a film showing)?</div>			
+		<span class="nowrap"><input type="checkbox" name="paddedseat" value="y" id="paddedseat" /><label for="paddedseat">Padded/comfortable seating?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="basicseat" value="y" id="basicseat" /><label for="basicseat">Basic seating?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="wheelchairtoiletshort" value="y" id="wheelchairtoiletshort"/><label for="wheelchairtoiletshort">Wheelchair accessible toilet?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="genderneutraltoiletshort" value="y" id="genderneutraltoiletshort"/><label for="genderneutraltoiletshort">Gender neutral toilet?<span title="at most events this would be a single cubicle facility">(?)</span></label>
+		</span> <span class="nowrap"><input type="checkbox" name="hearingloopshort" value="y" id="hearingloopshort"/><label for="hearingloopshort">Hearing loop?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="bslshort" value="y" id="bslshort"/><label for="bslshort">BSL interpretor?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="quietshort" value="y" id="quietshort"/><label for="quietshort">Designated quiet space?<span title="At some events people provide a space that is designated as a quiet space where people can go if they need that. Examples where this is a good idea is where the event might be very emotional or triggering or where the main event is very loud and people might need a break for any number of reasons.">(?)</span></label>
+		</span> <span class="nowrap"><input type="checkbox" name="parkshort" value="y" id="parkshort"/><label for="parkshort">Parking nearby/onsite?</label>	
+		</span> <span class="nowrap"><input type="checkbox" name="blueshort" value="y" id="blueshort"/><label for="blueshort">Blue badge parking?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="subshort" value="y" id="subshort"/><label for="subshort">Subtitles?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="ccshort" value="y" id="ccshort"/><label for="ccshort">Including closed caption?<span title="Closed caption are subtitles that for those with hearing impairments, decribing noises on the film in addition to what people are saying">(?)</span></label>
+		</span> <span class="nowrap"><input type="checkbox" name="englishaudioshort" value="y" id="englishaudioshort"/><label for="englishaudioshort">English language audio?</label>
+		</span> <span class="nowrap"><input type="checkbox" name="audiodescriptionshort" value="y" id="audiodescriptionshort"/><label for="audiodescriptionshort">Including audio description?<span title="Audio description is description of what is happening on screen for those with sight impairments">(?)</span></label>
+		</span>		
+		<div><label>Any further comments?<span title="Examples of things here might be that there is a ramp but in needs putting out and who to contact or that the ramp is a split or gutter ramp which is not suitable for powerchair users, another might be that printouts of the script are available on the door (for those with hearing impairments)">(?)</label>
+			<div><textarea name="commentshort" id="commentshort" placeholder="Details"></textarea></div>
+		</div>
+		<div><label>Please provide contact details for any access inquiries (if not included elsewhere):</label>
+			<input type="text" id="contactshort" name="contactshort">
+		</div>
+	</div>
+	<div id="generate">
+		<button>Generate it</button>
+		<div class="clear"></div>		
+	</div>
+	<div id="select" class="hide">
+		<button>Select result</button>
+		<div class="clear"></div>
+
+	</div>
+	
+	<textarea id="result" class="hide">
+	</textarea>
+
+<p><small>Designed and written by Rowan Thomas for CUSU Disabled Students' Campaign, available <a href="https://github.com/cusu/accessibility-statement-generator">on Github</a>.</small></p>
+
+</div>
+
+</body>
+
+</html>
