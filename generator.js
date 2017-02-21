@@ -1,11 +1,9 @@
 		$(document).ready(function(){
-				$('span[title]').each(function(i,s){
+			$('span[title]').each(function(i,s){
 				$(s).parent()[0].title = s.title;
-				s.title = null;
 				$(s).parent().tooltip();
-                $(s).text('?');
-                $(s).addClass('tooltipindicator'); 
-
+        		        $(s).text('?');
+	        	        $(s).addClass('tooltipindicator');
 			});
 			$('.requireJS').show();
 			function toggle(toggle) {
