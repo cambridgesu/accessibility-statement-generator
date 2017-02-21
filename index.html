@@ -1,4 +1,15 @@
 
+
+<!-- Stash any existing jQuery -->
+<script type="text/javascript">
+	if (typeof window.$ !== 'undefined') {
+		var originalDollar = $.noConflict(true);
+	}
+	if (typeof window.jQuery !== 'undefined') {
+		var originalJquery = jQuery.noConflict(true);
+	}
+</script>
+
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="jquery.tooltip.js"></script>
@@ -270,4 +281,15 @@ Please enable Javascript.
 	<p><small>Designed and written by Rowan Thomas for CUSU Disabled Students' Campaign, available <a href="https://github.com/cusu/accessibility-statement-generator">on Github</a>.</small></p>
 
 </div>
+
+<!-- Restore any existing jQuery -->
+<script type="text/javascript">
+	if (typeof originalJquery !== 'undefined') {
+		window.jQuery = originalJquery;
+	}
+	if (typeof originalDollar !== 'undefined') {
+		window.$ = originalDollar;
+	}
+</script>
+
 
