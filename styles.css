@@ -55,6 +55,7 @@ button, .toggle {
 	font-size: 80%;
 	vertical-align: super;
 }
+label {margin-right: 20px;}
 		
 
 /* IE hacks */
