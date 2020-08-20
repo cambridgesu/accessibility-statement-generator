@@ -14,7 +14,7 @@ textarea, #steps_count {font: inherit; color: black;}
 #comment, #commentshort {width: 97%; resize: none;}
 #contact, #contactshort {min-width: 20em;}
 .nowrap {white-space: nowrap;}
-.sectionhead {font-size: 1.2em;}
+h2 {font-size: 1.2em; margin-top: 2em;}
 /* Style the label so it looks like a button */
 button, .toggle {
 	border: 4px outset #cccccc;
