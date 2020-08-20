@@ -4,6 +4,7 @@
 .hide {display: none;}
 .noJS {background: #ff0; color: #000; padding: 1em;}
 .noJS {max-width: 40em;}
+table tr td:first-child {width: 30%;}
 #steps_count {width: 5em;}
 #contactdetails {width: 25em;}
 ol li {margin: 1em 0 1em;}
