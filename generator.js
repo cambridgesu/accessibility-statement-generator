@@ -189,8 +189,8 @@
 				var english = $('#englishaudio input:checked').val();}
 				else{ sub=="";cc="";audiodescription="";english="";}
 				var comment=$('#comment')[0].value;
-				if (comment=="\s") comment="";				
-				var contact=$('#contact')[0].value;				
+				if (comment=="\s") comment="";
+				var contact=$('#contact')[0].value;
 				if (contact=="\s") contact="";
 				var yes=[];
 				var no=[];
@@ -216,10 +216,10 @@
 				else if (hearingloop=="reqad"){reqad.push("a hearing loop");}
 				else if (hearingloop=="req"){req.push("a hearing loop");}
 				
-				if (bsl=="y"){yes.push("a bsl interpreter");}
-				else if (bsl=="n"){no.push("a bsl interpreter");}
-				else if (bsl=="reqad"){reqad.push("a bsl interpreter");}
-				else if (bsl=="req"){req.push("a bsl interpreter");}
+				if (bsl=="y"){yes.push("a BSL interpreter");}
+				else if (bsl=="n"){no.push("a BSL interpreter");}
+				else if (bsl=="reqad"){reqad.push("a BSL interpreter");}
+				else if (bsl=="req"){req.push("a BSL interpreter");}
 
 				if (quiet=="y"){yes.push("a designated quiet space");}
 				else if (quiet=="n"){no.push("a designated quiet space");}
@@ -395,7 +395,7 @@
 				if (wheelchairtoilet==true){yes.push("an accessible toilet");}
 				if (genderneutraltoilet==true){yes.push("a gender neutral toilet");}
 				if (hearingloop==true){yes.push("a hearing loop");}
-				if (bsl==true){yes.push("a bsl interpreter");}
+				if (bsl==true){yes.push("a BSL interpreter");}
 				if (quiet==true){yes.push("a designated quiet space");}
 				if (parking==true){yes.push("general car parking");}
 				if (blue==true){yes.push("blue badge parking");}
