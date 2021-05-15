@@ -35,14 +35,10 @@ $(document).ready(function () {
 	$("#generate button").click(generatechoice);
 	$("#select").click(function () { $('#result').focus(); $('#result').select(); });
 });
-var changed = false;
+
 $(document).ready(function () {
 	$('.noJS').hide();
 	$('.requireJS').show();
-
-	/*$(window).bind('onbeforeunload', function(){
-		if (changed) return "Do you want to leave the page? Your changes will be lost.";
-	});*/
 
 	function enableTree(where, on) {
 		if ($('#greyed')[0].checked) {
@@ -102,11 +98,7 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$('.noJS').hide();
 	$('.requireJS').show();
-
-	/*$(window).bind('onbeforeunload', function(){
-		if (changed) return "Do you want to leave the page? Your changes will be lost.";
-	});*/
-
+	
 	function enableTree(where, on) {
 		if ($('#greyed')[0].checked) {
 			$('input, select', where).attr('disabled', on ? null : 'disabled');
