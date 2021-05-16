@@ -458,17 +458,11 @@ var generator = (function ($) {
 				s += "There isn't " + no[0] + ". ";
 			}
 			
-			if (comment != "" && s != "") {
-				s += "\n" + comment;
-			} else if (comment != "") {
-				s += comment;
-			}
+			// Add comment, if any
+			s += generator.processText (s, comment);
 			
-			if (contact != "" && s != "") {
-				s += "\n You can contact us about access on " + contact;
-			} else if (contact != "") {
-				s += "You can contact us about access on " + contact;
-			}
+			// Add contact details, if any
+			s += generator.processText (s, contact, 'You can contact us about access on ');
 			
 			// Show the result
 			generator.showResult (s);
@@ -577,20 +571,39 @@ var generator = (function ($) {
 				s += "There is " + yes[0] + ". ";
 			}
 			
-			if (comment != "" && s != "") {
-				s += "\n" + comment;
-			} else if (comment != "") {
-				s += comment;
-			}
+			// Add comment, if any
+			s += generator.processText (s, comment);
 			
-			if (contact != "" && s != "") {
-				s += "\n You can contact us about access on " + contact;
-			} else if (contact != "") {
-				s += "You can contact us about access on " + contact;
-			}
+			// Add contact details, if any
+			s += generator.processText (s, contact, 'You can contact us about access on ');
 			
 			// Show the result
 			generator.showResult (s);
+		},
+		
+		
+		// Function to process text options
+		processText: function (s, comment, prefix)
+		{
+			// Return nothing if no value
+			if (!comment.length) {return '';}
+			
+			// Start the result
+			var result = '';
+			
+			// Add newline if there is already other results
+			if (s.length) {result += "\n";}
+			
+			// Add prefix if required
+			if (prefix) {
+				result += prefix;
+			}
+			
+			// Add the comment
+			result += comment;
+			
+			// Return the result
+			return result;
 		},
 		
 		
