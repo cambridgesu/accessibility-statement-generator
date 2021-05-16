@@ -161,7 +161,7 @@ var generator = (function ($) {
 		toggleSteps: function ()
 		{
 			var accessType = $('#access input:checked').val ();
-			var separateRoute = $('#separateaccess_y')[0].checked;
+			var separateRoute = $('#separateaccess_yes')[0].checked;
 			var enable = !((accessType == 'wa' || accessType == 'sf') && separateRoute == false);
 			generator.enableTree ($('#steps'), enable);
 		},
@@ -176,14 +176,14 @@ var generator = (function ($) {
 		
 		filmChange: function ()
 		{
-			var enable = $('#film_y')[0].checked;
+			var enable = $('#film_yes')[0].checked;
 			generator.enableTree ($('#filmhide')[0], enable);
 		},
 		
 		
 		separateWording: function ()
 		{
-			if ($('#separateaccess_y')[0].checked) {
+			if ($('#separateaccess_yes')[0].checked) {
 				$("#separateshow").show ();
 			} else {
 				$("#separateshow").hide ();
@@ -202,7 +202,7 @@ var generator = (function ($) {
 		toggleStepsShort: function ()
 		{
 			var accessType = $('#accessshort input:checked').val();
-			var separateRoute = $('#separateaccessshort_y')[0].checked;
+			var separateRoute = $('#separateaccessshort_yes')[0].checked;
 			var enable = !((accessType == 'wa' || accessType == 'sf') && separateRoute == false);
 			generator.enableTree ($('#stepsshort'), enable);
 		},
@@ -217,7 +217,7 @@ var generator = (function ($) {
 		
 		separateWordingShort: function ()
 		{
-			if ($('#separateaccessshort_y')[0].checked) {
+			if ($('#separateaccessshort_yes')[0].checked) {
 				$("#separateshowshort").show();
 			} else {
 				$("#separateshowshort").hide();
@@ -233,7 +233,7 @@ var generator = (function ($) {
 			
 			var separateRoute = false;
 			if ($('#access_wa')[0].checked || $('#access_sf')[0].checked) {
-				separateRoute = $('#separateaccess_y')[0].checked;
+				separateRoute = $('#separateaccess_yes')[0].checked;
 			}
 			
 			var stepnumber = "";
@@ -245,94 +245,9 @@ var generator = (function ($) {
 				handrail = $('#steps_hr input:checked').val();
 			}
 			
-			var seating = $('#seat input:checked').val();
-			var wheelchairtoilet = $('#wheelchairtoilet input:checked').val();
-			var genderneutraltoilet = $('#genderneutraltoilet input:checked').val();
-			var hearingloop = $('#hearingloop input:checked').val();
-			var bsl = $('#bsl input:checked').val();
-			var quietspace = $('#quietspace input:checked').val();
-			var parking = $('#park input:checked').val();
-			var bluebadge = $('#bluebadge input:checked').val();
-			
-			var film = $('#film input:checked').val();
-			var subtitles = "";
-			var cc = "";
-			var audiodescription = "";
-			var englishaudio = "";
-			if (film == "y") {
-				subtitles = $('#subtitles input:checked').val();
-				cc = $('#cc input:checked').val();
-				audiodescription = $('#audiodescription input:checked').val();
-				englishaudio = $('#englishaudio input:checked').val();
-			}
-			
 			var comment = $('#comment')[0].value.trim();
 			var contact = $('#contact')[0].value.trim();
 			
-			var yes = [];
-			var no = [];
-			var reqad = [];
-			var req = [];
-			//
-			//Generating the yes, no, reqad and req arrays for lists of what is available
-			//
-			if (seating == "yp") { yes.push("padded seating"); }
-			else if (seating == "yn") { yes.push("basic seating"); }
-			else if (seating == "y") { yes.push("seating"); }
-			else if (seating == "n") { no.push("seating"); }
-
-			if (wheelchairtoilet == "y") { yes.push("an accessible toilet"); }
-			else if (wheelchairtoilet == "p") { yes.push("a partially accessible toilet"); }
-			else if (wheelchairtoilet == "n") { no.push("an accessible toilet"); }
-
-			if (genderneutraltoilet == "y") { yes.push("a gender neutral toilet"); }
-			else if (genderneutraltoilet == "n") { no.push("a gender neutral toilet"); }
-
-			if (hearingloop == "y") { yes.push("a hearing loop"); }
-			else if (hearingloop == "n") { no.push("a hearing loop"); }
-			else if (hearingloop == "reqad") { reqad.push("a hearing loop"); }
-			else if (hearingloop == "req") { req.push("a hearing loop"); }
-
-			if (bsl == "y") { yes.push("a BSL interpreter"); }
-			else if (bsl == "n") { no.push("a BSL interpreter"); }
-			else if (bsl == "reqad") { reqad.push("a BSL interpreter"); }
-			else if (bsl == "req") { req.push("a BSL interpreter"); }
-
-			if (quietspace == "y") { yes.push("a designated quiet space"); }
-			else if (quietspace == "n") { no.push("a designated quiet space"); }
-			else if (quietspace == "reqad") { reqad.push("a designated quiet space"); }
-			else if (quietspace == "req") { req.push("a designated quiet space"); }
-
-			if (parking == "y") { yes.push("general car parking"); }
-			else if (parking == "n") { no.push("general car parking"); }
-			else if (parking == "reqad") { reqad.push("general car parking"); }
-			else if (parking == "req") { req.push("general car parking"); }
-
-			if (bluebadge == "y") { yes.push("blue badge parking"); }
-			else if (bluebadge == "n") { no.push("blue badge parking"); }
-			else if (bluebadge == "reqad") { reqad.push("blue badge parking"); }
-			else if (bluebadge == "req") { req.push("blue badge parking"); }
-
-			if (subtitles == "y") { yes.push("subtitles"); }
-			else if (subtitles == "n") { no.push("subtitles"); }
-			else if (subtitles == "reqad") { reqad.push("subtitles"); }
-			else if (subtitles == "req") { req.push("subtitles"); }
-
-			if (cc == "y") { yes.push("closed caption"); }
-			else if (cc == "n") { no.push("closed caption"); }
-			else if (cc == "reqad") { reqad.push("closed caption"); }
-			else if (cc == "req") { req.push("closed caption"); }
-
-			if (audiodescription == "y") { yes.push("audio description"); }
-			else if (audiodescription == "n") { no.push("audio description"); }
-			else if (audiodescription == "reqad") { reqad.push("audio description"); }
-			else if (audiodescription == "req") { req.push("audio description"); }
-
-			if (englishaudio == "y") { yes.push("english audio"); }
-			else if (englishaudio == "n") { no.push("english audio"); }
-			else if (englishaudio == "reqad") { reqad.push("english audio"); }
-			else if (englishaudio == "req") { req.push("english audio"); }
-
 			//
 			// Statement generation starts here
 			//
@@ -405,18 +320,22 @@ var generator = (function ($) {
 				}
 				s += ". ";
 			}
-
+			
+			// Determine the facilities available / unavailable
+			// This generates the yes, no, reqad and req arrays for lists of what is available
+			var buckets = generator.determineFacilitiesAvailability ();
+			
 			// Process the 'yes' options
-			s += generator.compileOptions (yes, 'There is ', 'and');
+			s += generator.compileOptions (buckets.yes, 'There is ', 'and');
 			
 			// Process the 'by request in advance' options
-			s += generator.compileOptions (reqad, 'There is ', 'and', ', by request in advance');
+			s += generator.compileOptions (buckets.reqad, 'There is ', 'and', ', by request in advance');
 			
 			// Process the 'by request at the event' options
-			s += generator.compileOptions (req, 'There is ', 'and', ', by request at the event');
+			s += generator.compileOptions (buckets.req, 'There is ', 'and', ', by request at the event');
 			
 			// Process the 'no' options
-			s += generator.compileOptions (no, "There isn't ", 'or');
+			s += generator.compileOptions (buckets.no, "There isn't ", 'or');
 			
 			// Add comment, if any
 			s += generator.processText (s, comment);
@@ -428,6 +347,51 @@ var generator = (function ($) {
 			generator.showResult (s);
 		},
 		
+		
+		// Function to determine the facilities available / unavailable
+		determineFacilitiesAvailability: function ()
+		{
+			// Generate the yes, no, reqad and req arrays for lists of what is available
+			var options = {
+				seating,
+				wheelchairtoilet,
+				genderneutraltoilet,
+				hearingloop,
+				bsl,
+				quietspace,
+				parking,
+				bluebadge,
+				subtitles,
+				cc,
+				audiodescription,
+				englishaudio,
+			};
+			
+			// Initialise buckets for each group
+			var buckets = {yes: [], no: [], reqad: [], req: []};
+			
+			// Determine the chosen group, and the value for each option
+			var splitRegexp = /^(yes|no|reqad|req): (.+)/;
+			var matches, value, description;
+			$.each (options, function (option) {
+				
+				// Obtain the value, or skip if not answered
+				value = $('#' + option + ' input:checked').val();
+				if (!value) {return;}	// I.e. continue to next
+				
+				// Split out the value; e.g. "yes: a hearing loop" would be put in the "yes" group with "a hearing loop" as the description
+				matches = value.split (splitRegexp);
+				value = matches[1];
+				description = matches[2];
+				
+				// Add to the bucket
+				buckets[value].push (description);
+			});
+			
+			// Return the lists
+			return buckets;
+		},
+		
 
 		// Function to generate the short version
 		generateshort: function ()
@@ -437,7 +401,7 @@ var generator = (function ($) {
 			
 			var separateRoute = false;
 			if ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked) {
-				separateRoute = $('#separateaccessshort_y')[0].checked;
+				separateRoute = $('#separateaccessshort_yes')[0].checked;
 			}
 			
 			var stepnumber = "";
@@ -535,7 +499,7 @@ var generator = (function ($) {
 		compileOptions: function (options, prefix, separator, suffix)
 		{
 			// Return nothing if no value
-			if (!options.length) {return;}
+			if (!options.length) {return '';}
 			
 			// Start with the prefix
 			var result = prefix;

@@ -93,7 +93,7 @@
 					<tr>
 						<td>
 							<div id="separateaccess" class="hide">
-								<input type="checkbox" name="separateaccess" value="route" id="separateaccess_y" /><label for="separateaccess_y">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label>
+								<input type="checkbox" name="separateaccess" value="route" id="separateaccess_yes" /><label for="separateaccess_yes">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label>
 							</div>
 						</td>
 					</tr>
@@ -136,21 +136,21 @@
 			<div>
 				<h2>Facilities - which of the following are available?</h2>
 				<table>
-					<tr id="seat">
+					<tr id="seating">
 						<td><label>Seating?</label></td>
 						<td>
-							<input type="radio" name="seat" value="yp" id="seat_yp" /><label for="seat_yp">yes - padded/comfortable</label>
-							<input type="radio" name="seat" value="yn" id="seat_yb" /><label for="seat_yb">yes - basic chairs</label>
-							<input type="radio" name="seat" value="y" id="seat_y" /><label for="seat_y">yes - unknown type</label>
-							<input type="radio" name="seat" value="n" id="seat_n" /><label for="seat_n">no</label>
-							<input type="radio" name="seat" value="" id="seat_" /><label for="seat_">unknown</label>
+							<input type="radio" name="seating" value="yes: padded seating" id="seating_yp" /><label for="seating_yp">yes - padded/comfortable</label>
+							<input type="radio" name="seating" value="yes: basic seating" id="seating_yb" /><label for="seating_yb">yes - basic chairs</label>
+							<input type="radio" name="seating" value="yes: seating" id="seating_yes" /><label for="seating_yes">yes - unknown type</label>
+							<input type="radio" name="seating" value="no: seating" id="seating_no" /><label for="seating_no">no</label>
+							<input type="radio" name="seating" value="" id="seating_" /><label for="seating_">unknown</label>
 						</td>
 					</tr>
 					<tr id="wheelchairtoilet">
 						<td><label>Wheelchair accessible toilet?</label></td>
-						<td><input type="radio" name="wheelchairtoilet" value="y" id="wheelchairtoilet_y" /><label for="wheelchairtoilet_y">yes</label>
-							<input type="radio" name="wheelchairtoilet" value="p" id="wheelchairtoilet_p" /><label for="wheelchairtoilet_p">partially accessible toilet<span title="For instance a toilet that is not large enough for a wheelchair to move around in or which is big enough but doesn't have any grab rails">(?)</span></label>
-							<input type="radio" name="wheelchairtoilet" value="n" id="wheelchairtoilet_n" /><label for="wheelchairtoilet_n">no</label>
+						<td><input type="radio" name="wheelchairtoilet" value="yes: an accessible toilet" id="wheelchairtoilet_yes" /><label for="wheelchairtoilet_yes">yes</label>
+							<input type="radio" name="wheelchairtoilet" value="yes: a partially accessible toilet" id="wheelchairtoilet_p" /><label for="wheelchairtoilet_p">partially accessible toilet<span title="For instance a toilet that is not large enough for a wheelchair to move around in or which is big enough but doesn't have any grab rails">(?)</span></label>
+							<input type="radio" name="wheelchairtoilet" value="no: an accessible toilet" id="wheelchairtoilet_no" /><label for="wheelchairtoilet_no">no</label>
 							<input type="radio" name="wheelchairtoilet" value="" id="wheelchairtoilet_" /><label for="wheelchairtoilet_">unknown</label>
 						</td>
 					</tr>
@@ -158,58 +158,58 @@
 						<td><label>Gender neutral toilet?<span title="at most events this would be a single cubicle facility">(?)</span></label>
 						</td>
 						<td>
-							<input type="radio" name="genderneutraltoilet" value="y" id="genderneutraltoilet_y" /><label for="genderneutraltoilet_y">yes</label>
-							<input type="radio" name="genderneutraltoilet" value="n" id="genderneutraltoilet_n" /><label for="genderneutraltoilet_n">no</label>
+							<input type="radio" name="genderneutraltoilet" value="yes: a gender neutral toilet" id="genderneutraltoilet_yes" /><label for="genderneutraltoilet_yes">yes</label>
+							<input type="radio" name="genderneutraltoilet" value="no: a gender neutral toilet" id="genderneutraltoilet_no" /><label for="genderneutraltoilet_no">no</label>
 							<input type="radio" name="genderneutraltoilet" value="" id="genderneutraltoilet_" /><label for="genderneutraltoilet_">unknown</label>
 						</td>
 					</tr>
 					<tr id="hearingloop">
 						<td><label>Hearing loop?</label></td>
 						<td>
-							<input type="radio" name="hearingloop" value="y" id="hearingloop_y" /><label for="hearingloop_y">yes</label>
-							<input type="radio" name="hearingloop" value="n" id="hearingloop_n" /><label for="hearingloop_n">no</label>
-							<input type="radio" name="hearingloop" value="reqad" id="hearingloop_reqad" /><label for="hearingloop_reqad">by request in advance</label>
-							<input type="radio" name="hearingloop" value="req" id="hearingloop_req" /><label for="hearingloop_req">by request at the event</label>
+							<input type="radio" name="hearingloop" value="yes: a hearing loop" id="hearingloop_yes" /><label for="hearingloop_yes">yes</label>
+							<input type="radio" name="hearingloop" value="no: a hearing loop" id="hearingloop_no" /><label for="hearingloop_no">no</label>
+							<input type="radio" name="hearingloop" value="reqad: a hearing loop" id="hearingloop_reqad" /><label for="hearingloop_reqad">by request in advance</label>
+							<input type="radio" name="hearingloop" value="req: a hearing loop" id="hearingloop_req" /><label for="hearingloop_req">by request at the event</label>
 							<input type="radio" name="hearingloop" value="" id="hearingloop_" /><label for="hearingloop_">unknown</label>
 						</td>
 					</tr>
 					<tr id="bsl">
 						<td><label>BSL interpreter?</label></td>
 						<td>
-							<input type="radio" name="bsl" value="y" id="bsl_y" /><label for="bsl_y">yes</label>
-							<input type="radio" name="bsl" value="n" id="bsl_n" /><label for="bsl_n">no</label>
-							<input type="radio" name="bsl" value="reqad" id="bsl_reqad" /><label for="bsl_reqad">by request in advance</label>
-							<input type="radio" name="bsl" value="req" id="bsl_req" /><label for="bsl_req">by request at the event</label>
+							<input type="radio" name="bsl" value="yes: a BSL interpreter" id="bsl_yes" /><label for="bsl_yes">yes</label>
+							<input type="radio" name="bsl" value="no: a BSL interpreter" id="bsl_no" /><label for="bsl_no">no</label>
+							<input type="radio" name="bsl" value="reqad: a BSL interpreter" id="bsl_reqad" /><label for="bsl_reqad">by request in advance</label>
+							<input type="radio" name="bsl" value="req: a BSL interpreter" id="bsl_req" /><label for="bsl_req">by request at the event</label>
 							<input type="radio" name="bsl" value="" id="bsl_" /><label for="bsl_">unknown</label>
 						</td>
 					</tr>
 					<tr id="quietspace">
 						<td><label>Designated quiet space?<span title="At some events people provide a space that is designated as a quiet space where people can go if they need that. Examples where this is a good idea is where the event might be very emotional or triggering or where the main event is very loud and people might need a break for any number of reasons.">(?)</span></label></td>
 						<td>
-							<input type="radio" name="quietspace" value="y" id="quietspace_y" /><label for="quietspace_y">yes</label>
-							<input type="radio" name="quietspace" value="n" id="quietspace_n" /><label for="quietspace_n">no</label>
-							<input type="radio" name="quietspace" value="reqad" id="quietspace_reqad" /><label for="quietspace_reqad">by request in advance</label>
-							<input type="radio" name="quietspace" value="req" id="quietspace_req" /><label for="quietspace_req">by request at the event</label>
+							<input type="radio" name="quietspace" value="yes: a designated quiet space" id="quietspace_yes" /><label for="quietspace_yes">yes</label>
+							<input type="radio" name="quietspace" value="no: a designated quiet space" id="quietspace_no" /><label for="quietspace_no">no</label>
+							<input type="radio" name="quietspace" value="reqad: a designated quiet space" id="quietspace_reqad" /><label for="quietspace_reqad">by request in advance</label>
+							<input type="radio" name="quietspace" value="req: a designated quiet space" id="quietspace_req" /><label for="quietspace_req">by request at the event</label>
 							<input type="radio" name="quietspace" value="" id="quietspace_" /><label for="quietspace_">unknown</label>
 						</td>
 					</tr>
-					<tr id="park">
+					<tr id="parking">
 						<td><label>Parking nearby/onsite?</label></td>
 						<td>
-							<input type="radio" name="park" value="y" id="park_y" /><label for="park_y">yes</label>
-							<input type="radio" name="park" value="n" id="park_n" /><label for="park_n">no</label>
-							<input type="radio" name="park" value="reqad" id="park_reqad" /><label for="park_reqad">by request in advance</label>
-							<input type="radio" name="park" value="req" id="park_req" /><label for="park_req">by request at the event</label>
-							<input type="radio" name="park" value="" id="park_" /><label for="park_">unknown</label>
+							<input type="radio" name="parking" value="yes: general car parking" id="parking_yes" /><label for="parking_yes">yes</label>
+							<input type="radio" name="parking" value="no: general car parking" id="parking_no" /><label for="parking_no">no</label>
+							<input type="radio" name="parking" value="reqad: general car parking" id="parking_reqad" /><label for="parking_reqad">by request in advance</label>
+							<input type="radio" name="parking" value="req: general car parking" id="parking_req" /><label for="parking_req">by request at the event</label>
+							<input type="radio" name="parking" value="" id="park_" /><label for="parking_">unknown</label>
 						</td>
 					</tr>
 					<tr id="bluebadge">
 						<td><label>Blue badge parking near the venue?</label></td>
 						<td>
-							<input type="radio" name="bluebadge" value="y" id="bluebadge_y" /><label for="bluebadge_y">yes</label>
-							<input type="radio" name="bluebadge" value="n" id="bluebadge_n" /><label for="bluebadge_n">no</label>
-							<input type="radio" name="bluebadge" value="reqad" id="bluebadge_reqad" /><label for="bluebadge_reqad">by request in advance</label>
-							<input type="radio" name="bluebadge" value="req" id="bluebadge_req" /><label for="bluebadge_req">by request at the event</label>
+							<input type="radio" name="bluebadge" value="yes: blue badge parking" id="bluebadge_yes" /><label for="bluebadge_yes">yes</label>
+							<input type="radio" name="bluebadge" value="no: blue badge parking" id="bluebadge_no" /><label for="bluebadge_no">no</label>
+							<input type="radio" name="bluebadge" value="reqad: blue badge parking" id="bluebadge_reqad" /><label for="bluebadge_reqad">by request in advance</label>
+							<input type="radio" name="bluebadge" value="req: blue badge parking" id="bluebadge_req" /><label for="bluebadge_req">by request at the event</label>
 							<input type="radio" name="bluebadge" value="" id="bluebadge_" /><label for="bluebadge_">unknown</label>
 						</td>
 					</tr>
@@ -220,8 +220,8 @@
 						<tr>
 							<td>Does this event include a video showing?</td>
 							<td>
-								<input type="radio" name="film" value="y" id="film_y" /><label for="film_y">yes</label>
-								<input type="radio" name="film" value="n" id="film_n" /><label for="film_n">no</label>
+								<input type="radio" name="film" value="yes" id="film_yes" /><label for="film_yes">yes</label>
+								<input type="radio" name="film" value="no" id="film_no" /><label for="film_no">no</label>
 								<input type="radio" name="film" value="" id="film_" /><label for="film_">unknown</label>
 							</td>
 						</tr>
@@ -232,20 +232,20 @@
 						<tr id="subtitles">
 							<td><label>Are there subtitles?</label></td>
 							<td>
-								<input type="radio" name="subtitles" value="y" id="subtitles_y" /><label for="subtitles_y">yes</label>
-								<input type="radio" name="subtitles" value="n" id="subtitles_n" /><label for="subtitles_n">no</label>
-								<input type="radio" name="subtitles" value="reqad" id="subtitles_reqad" /><label for="subtitles_reqad">by request in advance</label>
-								<input type="radio" name="subtitles" value="req" id="subtitles_req" /><label for="subtitles_req">by request at the event</label>
+								<input type="radio" name="subtitles" value="yes: subtitles" id="subtitles_yes" /><label for="subtitles_yes">yes</label>
+								<input type="radio" name="subtitles" value="no: subtitles" id="subtitles_no" /><label for="subtitles_no">no</label>
+								<input type="radio" name="subtitles" value="reqad: subtitles" id="subtitles_reqad" /><label for="subtitles_reqad">by request in advance</label>
+								<input type="radio" name="subtitles" value="req: subtitles" id="subtitles_req" /><label for="subtitles_req">by request at the event</label>
 								<input type="radio" name="subtitles" value="" id="subtitles_" /><label for="subtitles_">unknown</label>
 							</td>
 						</tr>
 						<div id="cc" class="hide">
 							<tr id="cc">
 								<td><label>Including closed caption?<span title="Closed caption are subtitles that for those with hearing impairments, decribing noises on the film in addition to what people are saying">(?)</span></label></td>
-								<td><input type="radio" name="cc" value="y" id="cc_y" /><label for="cc_y">yes</label>
-									<input type="radio" name="cc" value="n" id="cc_n" /><label for="cc_n">no</label>
-									<input type="radio" name="cc" value="reqad" id="cc_reqad" /><label for="cc_reqad">by request in advance</label>
-									<input type="radio" name="cc" value="req" id="cc_req" /><label for="cc_req">by request at the event</label>
+								<td><input type="radio" name="cc" value="yes: closed caption" id="cc_yes" /><label for="cc_yes">yes</label>
+									<input type="radio" name="cc" value="no: closed caption" id="cc_no" /><label for="cc_no">no</label>
+									<input type="radio" name="cc" value="reqad: closed caption" id="cc_reqad" /><label for="cc_reqad">by request in advance</label>
+									<input type="radio" name="cc" value="req: closed caption" id="cc_req" /><label for="cc_req">by request at the event</label>
 									<input type="radio" name="cc" value="" id="cc_" /><label for="cc_">unknown</label>
 								</td>
 							</tr>
@@ -253,20 +253,20 @@
 						<tr id="audiodescription">
 							<td><label>Is there audio description?<span title="Audio description is description of what is happening on screen for those with sight impairments">(?)</span></label></td>
 							<td>
-								<input type="radio" name="audiodescription" value="y" id="audiodescription_y" /><label for="audiodescription_y">yes</label>
-								<input type="radio" name="audiodescription" value="n" id="audiodescription_n" /><label for="audiodescription_n">no</label>
-								<input type="radio" name="audiodescription" value="reqad" id="audiodescription_reqad" /><label for="audiodescription_reqad">by request in advance</label>
-								<input type="radio" name="audiodescription" value="req" id="audiodescription_req" /><label for="audiodescription_req">by request at the event</label>
+								<input type="radio" name="audiodescription" value="yes: audio description" id="audiodescription_yes" /><label for="audiodescription_yes">yes</label>
+								<input type="radio" name="audiodescription" value="no: audio description" id="audiodescription_no" /><label for="audiodescription_no">no</label>
+								<input type="radio" name="audiodescription" value="reqad: audio description" id="audiodescription_reqad" /><label for="audiodescription_reqad">by request in advance</label>
+								<input type="radio" name="audiodescription" value="req: audio description" id="audiodescription_req" /><label for="audiodescription_req">by request at the event</label>
 								<input type="radio" name="audiodescription" value="" id="audiodescription_" /><label for="audiodescription_">unknown</label>
 							</td>
 						</tr>
 						<tr id="englishaudio">
 							<td><label>English language audio?</label></td>
 							<td>
-								<input type="radio" name="englishaudio" value="y" id="englishaudio_y" /><label for="englishaudio_y">yes</label>
-								<input type="radio" name="englishaudio" value="n" id="englishaudio_n" /><label for="englishaudio_n">no</label>
-								<input type="radio" name="englishaudio" value="reqad" id="englishaudio_reqad" /><label for="englishaudio_reqad">by request in advance</label>
-								<input type="radio" name="englishaudio" value="req" id="englishaudio_req" /><label for="englishaudio_req">by request at the event</label>
+								<input type="radio" name="englishaudio" value="yes: english audio" id="englishaudio_yes" /><label for="englishaudio_yes">yes</label>
+								<input type="radio" name="englishaudio" value="no: english audio" id="englishaudio_no" /><label for="englishaudio_no">no</label>
+								<input type="radio" name="englishaudio" value="reqad: english audio" id="englishaudio_reqad" /><label for="englishaudio_reqad">by request in advance</label>
+								<input type="radio" name="englishaudio" value="req: english audio" id="englishaudio_req" /><label for="englishaudio_req">by request at the event</label>
 								<input type="radio" name="englishaudio" value="" id="englishaudio_" /><label for="englishaudio_">unknown</label>
 							</td>
 						</tr>
@@ -298,7 +298,7 @@
 				<label for="accessshort_">Unknown</label>
 			</div>
 			<div id="separateaccessshort" class="hide">
-				<input type="checkbox" name="separateaccessshort" value="route" id="separateaccessshort_y" /><label for="separateaccessshort_y">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label>
+				<input type="checkbox" name="separateaccessshort" value="route" id="separateaccessshort_yes" /><label for="separateaccessshort_yes">The step-free or wheelchair access is by a separate route.<span title="Often venues have a separate route into the venue for wheelchair users and those needing step free access. It's important to not assume a venue doesn't have step free access just because there are some steps up to the front door, they might have a ramp they can put in or a separate route">(?)</span></label>
 			</div>
 			<div id="stepsshort" class="hide">
 				<label for="stepsshort_data">How many steps<span id="separateshowshort"> into the main entrance</span>?<span title="Give a number of steps or a number of flights of stairs for instance, you can also state and further details (such as height; whether they are straight stairs or whether they have handrail here. If there is separate step free access please describe the main route.">(?)</span></label></td>
@@ -310,18 +310,18 @@
 				<h2>Facilities</h2>
 				<p>Which of the following are available (if relevant given e.g. a film showing)?</p>
 			</div>
-			<span class="nowrap"><input type="checkbox" name="paddedseatingshort" value="y" id="paddedseatingshort" /><label for="paddedseatingshort">Padded/comfortable seating?</label></span>
-			<span class="nowrap"><input type="checkbox" name="basicseatingshort" value="y" id="basicseatingshort" /><label for="basicseatingshort">Basic seating?</label></span> <span class="nowrap"><input type="checkbox" name="wheelchairtoiletshort" value="y" id="wheelchairtoiletshort" /><label for="wheelchairtoiletshort">Wheelchair accessible toilet?</label></span>
-			<span class="nowrap"><input type="checkbox" name="genderneutraltoiletshort" value="y" id="genderneutraltoiletshort" /><label for="genderneutraltoiletshort">Gender neutral toilet?<span title="at most events this would be a single cubicle facility">(?)</span></label></span>
-			<span class="nowrap"><input type="checkbox" name="hearingloopshort" value="y" id="hearingloopshort" /><label for="hearingloopshort">Hearing loop?</label></span>
-			<span class="nowrap"><input type="checkbox" name="bslshort" value="y" id="bslshort" /><label for="bslshort">BSL interpreter?</label></span>
-			<span class="nowrap"><input type="checkbox" name="quietspaceshort" value="y" id="quietspaceshort" /><label for="quietspaceshort">Designated quiet space?<span title="At some events people provide a space that is designated as a quiet space where people can go if they need that. Examples where this is a good idea is where the event might be very emotional or triggering or where the main event is very loud and people might need a break for any number of reasons.">(?)</span></label></span>
-			<span class="nowrap"><input type="checkbox" name="parkingshort" value="y" id="parkingshort" /><label for="parkingshort">Parking nearby/onsite?</label></span>
-			<span class="nowrap"><input type="checkbox" name="bluebadgeshort" value="y" id="bluebadgeshort" /><label for="bluebadgeshort">Blue badge parking?</label></span>
-			<span class="nowrap"><input type="checkbox" name="subtitlesshort" value="y" id="subtitlesshort" /><label for="subtitlesshort">Subtitles?</label></span>
-			<span class="nowrap"><input type="checkbox" name="ccshort" value="y" id="ccshort" /><label for="ccshort">Including closed caption?<span title="Closed caption are subtitles that for those with hearing impairments, decribing noises on the film in addition to what people are saying">(?)</span></label></span>
-			<span class="nowrap"><input type="checkbox" name="englishaudioshort" value="y" id="englishaudioshort" /><label for="englishaudioshort">English language audio?</label></span>
-			<span class="nowrap"><input type="checkbox" name="audiodescriptionshort" value="y" id="audiodescriptionshort" /><label for="audiodescriptionshort">Including audio description?<span title="Audio description is description of what is happening on screen for those with sight impairments">(?)</span></label></span>
+			<span class="nowrap"><input type="checkbox" name="paddedseatingshort" value="yes" id="paddedseatingshort" /><label for="paddedseatingshort">Padded/comfortable seating?</label></span>
+			<span class="nowrap"><input type="checkbox" name="basicseatingshort" value="yes" id="basicseatingshort" /><label for="basicseatingshort">Basic seating?</label></span> <span class="nowrap"><input type="checkbox" name="wheelchairtoiletshort" value="y" id="wheelchairtoiletshort" /><label for="wheelchairtoiletshort">Wheelchair accessible toilet?</label></span>
+			<span class="nowrap"><input type="checkbox" name="genderneutraltoiletshort" value="yes" id="genderneutraltoiletshort" /><label for="genderneutraltoiletshort">Gender neutral toilet?<span title="at most events this would be a single cubicle facility">(?)</span></label></span>
+			<span class="nowrap"><input type="checkbox" name="hearingloopshort" value="yes" id="hearingloopshort" /><label for="hearingloopshort">Hearing loop?</label></span>
+			<span class="nowrap"><input type="checkbox" name="bslshort" value="yes" id="bslshort" /><label for="bslshort">BSL interpreter?</label></span>
+			<span class="nowrap"><input type="checkbox" name="quietspaceshort" value="yes" id="quietspaceshort" /><label for="quietspaceshort">Designated quiet space?<span title="At some events people provide a space that is designated as a quiet space where people can go if they need that. Examples where this is a good idea is where the event might be very emotional or triggering or where the main event is very loud and people might need a break for any number of reasons.">(?)</span></label></span>
+			<span class="nowrap"><input type="checkbox" name="parkingshort" value="yes" id="parkingshort" /><label for="parkingshort">Parking nearby/onsite?</label></span>
+			<span class="nowrap"><input type="checkbox" name="bluebadgeshort" value="yes" id="bluebadgeshort" /><label for="bluebadgeshort">Blue badge parking?</label></span>
+			<span class="nowrap"><input type="checkbox" name="subtitlesshort" value="yes" id="subtitlesshort" /><label for="subtitlesshort">Subtitles?</label></span>
+			<span class="nowrap"><input type="checkbox" name="ccshort" value="yes" id="ccshort" /><label for="ccshort">Including closed caption?<span title="Closed caption are subtitles that for those with hearing impairments, decribing noises on the film in addition to what people are saying">(?)</span></label></span>
+			<span class="nowrap"><input type="checkbox" name="englishaudioshort" value="yes" id="englishaudioshort" /><label for="englishaudioshort">English language audio?</label></span>
+			<span class="nowrap"><input type="checkbox" name="audiodescriptionshort" value="yes" id="audiodescriptionshort" /><label for="audiodescriptionshort">Including audio description?<span title="Audio description is description of what is happening on screen for those with sight impairments">(?)</span></label></span>
 			<h2>Further details and contacts</h2>
 			<div>
 				<label>Any further comments?<span title="Examples of things here might be that there is a ramp but in needs putting out and who to contact or that the ramp is a split or gutter ramp which is not suitable for powerchair users, another might be that printouts of the script are available on the door (for those with hearing impairments)">(?)</label>
