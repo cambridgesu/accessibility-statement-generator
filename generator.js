@@ -268,6 +268,7 @@ var generator = (function ($) {
 			
 			var comment = $('#comment')[0].value.trim();
 			var contact = $('#contact')[0].value.trim();
+			
 			var yes = [];
 			var no = [];
 			var reqad = [];
@@ -469,17 +470,8 @@ var generator = (function ($) {
 				s += "You can contact us about access on " + contact;
 			}
 			
-			$('#result').val(s);
-			$('#result').show();
-			
-			var text = $('#result')[0];
-			text.style.height = 10 + "px";
-			var adjustedHeight = text.clientHeight;
-			adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
-			adjustedHeight = adjustedHeight - 20;
-			text.style.height = adjustedHeight + "px";
-			
-			$('#select').show();
+			// Show the result
+			generator.showResult (s);
 		},
 		
 
@@ -523,7 +515,6 @@ var generator = (function ($) {
 			});
 			
 			var comment = $('#commentshort')[0].value.trim();
-			
 			var contact = $('#contactshort')[0].value.trim();
 			
 			//
@@ -598,17 +589,30 @@ var generator = (function ($) {
 				s += "You can contact us about access on " + contact;
 			}
 			
-			$('#result').val(s);
+			// Show the result
+			generator.showResult (s);
+		},
+		
+		
+		// Function to show the result
+		showResult: function (result)
+		{
+			// Write the value into the box
+			$('#result').val (result);
+			
+			// Show the result box
 			$('#result').show();
 			
+			// Adjust the text box size if required
 			var text = $('#result')[0];
-			text.style.height = 10 + "px";
+			text.style.height = 10 + 'px';
 			var adjustedHeight = text.clientHeight;
-			adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
+			adjustedHeight = Math.max (text.scrollHeight, adjustedHeight);
 			adjustedHeight = adjustedHeight - 20;
-			text.style.height = adjustedHeight + "px";
+			text.style.height = adjustedHeight + 'px';
 			
-			$('#select').show();
+			// Show the selection control
+			$('#select').show ();
 		}
 	};
 	
