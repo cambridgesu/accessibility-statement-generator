@@ -2,115 +2,151 @@
 /*global $, alert, console, window */
 
 
-$(document).ready (function () {
-	
-	$('span[title]').each (function (i, s) {
-		$(s).parent()[0].title = s.title;
-		$(s).parent().tooltip();
-		$(s).text('?');
-		$(s).addClass('tooltipindicator');
+// Run on page load
+$(document).ready (function ()
+{
+	// Style tooltips and set title
+	$('span[title]').each (function (i, spanElement) {
+		$(spanElement).parent()[0].title = spanElement.title;
+		$(spanElement).parent().tooltip();
+		$(spanElement).text('?');
+		$(spanElement).addClass('tooltipindicator');
 	});
 	
 	// Hide JS message and show section as JS support confirmed
-	$('.noJS').hide();
-	$('.requireJS').show();
+	$('.noJS').hide ();
+	$('.requireJS').show ();
 	
-	function toggle(toggle) {
-		$(toggle).closest("div").css({
+	// Function to toggle between button pairs
+	function toggle (toggle)
+	{
+		// Set the border style
+		$(toggle).closest ('div').css ({
 			borderStyle: (toggle.checked ? 'inset' : 'outset')
 		});
+		
+		// Toggle which label to show
 		if (toggle.checked) {
-			$(toggle).parent().find('.selected').show();
-			$(toggle).parent().find('.unselected').hide();
+			$(toggle).parent().find('span.selected').show();
+			$(toggle).parent().find('span.unselected').hide();
 		} else {
-			$(toggle).parent().find('.selected').hide();
-			$(toggle).parent().find('.unselected').show();
+			$(toggle).parent().find('span.selected').hide();
+			$(toggle).parent().find('span.unselected').show();
 		}
 	}
 	
-	function choosetype() {
+	// Function to select which type (questions / short questions)
+	function choosetype ()
+	{
 		$('#result').hide();
 		$('#select').hide();
-		if ($("#type")[0].checked) {
-			$('#questions').fadeOut(function () {
-				$('#shortquestions').fadeIn('slow');
+		if ($("#type")[0].checked) {	// If the (single) checkbox is ticked
+			$('#questions').fadeOut (function () {
+				$('#shortquestions').fadeIn ('slow');
 			});
-		}
-		else {
-			$('#shortquestions').fadeOut(function () {
-				$('#questions').fadeIn('slow');
+		} else {
+			$('#shortquestions').fadeOut (function () {
+				$('#questions').fadeIn ('slow');
 			});
 		}
 	}
 	
-	function generatechoice() {
+	// Function to determine whether the result generation should use the standard or short version
+	function generatechoice ()
+	{
 		if ($("#type")[0].checked) {
 			generateshort();
 		} else {
 			generate();
 		}
 	}
+	
+	// Hide the short version questions block by default
 	$('#shortquestions').hide();
-	toggle($("#greyed"));
-	$("#greyed").click(function () {
-		toggle($('#greyed')[0]);
+	
+	// Inactive questions button toggle handling
+	toggle ($("#greyed"));
+	$("#greyed").click (function () {
+		toggle ($('#greyed')[0]);
 	});
-	toggle($("#type"));
-	$("#type").click(function () {
-		toggle($("#type")[0]);
+	
+	// Type (standard / short) button toggle handling
+	toggle ($("#type"));
+	$("#type").click (function () {
+		toggle ($("#type")[0]);
 	});
-	$("#type").click(choosetype);
-	$("#generate button").click(generatechoice);
-	$("#select").click(function () {
-		$('#result').focus(); $('#result').select();
+	
+	// Select which type (questions / short questions)
+	$("#type").click (choosetype);
+	
+	// Generate the result (for either the standard / short version)
+	$("#generate button").click (generatechoice);
+	
+	// Handle button for selection of the result box
+	$("#select").click (function () {
+		$('#result').focus();
+		$('#result').select();
 	});
 });
 
-$(document).ready(function () {
-
-	function enableTree(where, on) {
+$(document).ready (function ()
+{
+	function enableTree (where, on)
+	{
 		if ($('#greyed')[0].checked) {
-			$('input, select', where).attr('disabled', on ? null : 'disabled');
-			$('label', where).toggleClass('grey', !on);
+			$('input, select', where).attr ('disabled', on ? null : 'disabled');
+			$('label', where).toggleClass ('grey', !on);
 			$(where).slideDown();
 		} else {
 			if (on) {
-				$('label', where).removeClass('grey');
+				$('label', where).removeClass ('grey');
 				$(where).slideDown();
 			} else {
-				$('label', where).removeClass('grey');
+				$('label', where).removeClass ('grey');
 				$(where).slideUp();
 			}
 		}
 	}
-	function toggle_steps() {
+	
+	function toggle_steps ()
+	{
 		var accessType = $('#access input:checked').val();
 		var separateRoute = $('#separateaccess_y')[0].checked;
 		enableTree($('#steps'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
 	}
-	function access_change() {
+	
+	function access_change ()
+	{
 		enableTree($('#separateaccess')[0], ($('#access_wa')[0].checked || $('#access_sf')[0].checked));
 	}
-	function separatewording() {
+	
+	function separatewording ()
+	{
 		if ($('#separateaccess_y')[0].checked) {
 			$("#separateshow").show();
 		} else {
 			$("#separateshow").hide();
 		}
 	}
-	function film_change() {
+	
+	function film_change ()
+	{
 		enableTree($('#filmhide')[0], $('#film_y')[0].checked);
 	}
-	function refresh() {
+	
+	function refresh ()
+	{
 		toggle_steps();
 		access_change();
 		film_change();
 		separatewording();
 	}
+	
 	toggle_steps();
 	access_change();
 	film_change();
 	separatewording();
+	
 	$('#access').change(toggle_steps);
 	$('#access').click(toggle_steps);
 	$('#separateaccess').change(toggle_steps);
@@ -124,47 +160,57 @@ $(document).ready(function () {
 	$('#type').click(refresh);
 });
 
-$(document).ready(function () {
-	
-	function enableTree(where, on) {
+$(document).ready (function ()
+{
+	function enableTree (where, on)
+	{
 		if ($('#greyed')[0].checked) {
-			$('input, select', where).attr('disabled', on ? null : 'disabled');
-			$('label', where).toggleClass('grey', !on);
+			$('input, select', where).attr ('disabled', on ? null : 'disabled');
+			$('label', where).toggleClass ('grey', !on);
 			$(where).slideDown();
-		}
-		else {
+		} else {
 			if (on) {
-				$('label', where).removeClass('grey');
+				$('label', where).removeClass ('grey');
 				$(where).slideDown();
 			} else {
-				$('label', where).removeClass('grey');
+				$('label', where).removeClass ('grey');
 				$(where).slideUp();
 			}
 		}
 	}
-	function toggle_stepsshort() {
+	
+	function toggle_stepsshort ()
+	{
 		var accessType = $('#accessshort input:checked').val();
 		var separateRoute = $('#separateaccessshort_y')[0].checked;
 		enableTree($('#stepsshort'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
 	}
-	function access_changeshort() {
+	
+	function access_changeshort ()
+	{
 		enableTree($('#separateaccessshort')[0], ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked));
 	}
-	function separatewordingshort() {
+	
+	function separatewordingshort ()
+	{
 		if ($('#separateaccessshort_y')[0].checked) {
 			$("#separateshowshort").show();
 		} else {
 			$("#separateshowshort").hide();
 		}
 	}
-	function refreshshort() {
+	
+	function refreshshort ()
+	{
 		toggle_stepsshort();
 		access_changeshort();
 		separatewordingshort();
 	}
+	
 	toggle_stepsshort();
 	access_changeshort();
 	separatewordingshort();
+	
 	$('#accessshort').change(toggle_stepsshort);
 	$('#accessshort').click(toggle_stepsshort);
 	$('#separateaccessshort').change(toggle_stepsshort);
@@ -175,10 +221,10 @@ $(document).ready(function () {
 	$('#greyed').click(refreshshort);
 	$('#type').click(refreshshort);
 });
-//
-//generating function for the standard version
-//
-function generate() {
+
+// Function to generate the standard version
+function generate ()
+{
 	var s = '';
 	var accessType = $('#access input:checked').val();
 	
@@ -432,10 +478,10 @@ function generate() {
 	$('#result').slideDown();*/
 	$('#select').show();
 }
-//
-//generating function for the short version
-//
-function generateshort() {
+
+// Function to generate the short version
+function generateshort ()
+{
 	var s = '';
 	var accessType = $('#accessshort input:checked').val();
 	
