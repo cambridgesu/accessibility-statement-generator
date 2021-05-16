@@ -459,26 +459,29 @@ var generator = (function ($) {
 			} else if (no.length == 1) {
 				s += "There isn't " + no[0] + ". ";
 			}
+			
 			if (comment != "" && s != "") {
 				s += "\n" + comment;
 			} else if (comment != "") {
 				s += comment;
 			}
+			
 			if (contact != "" && s != "") {
 				s += "\n You can contact us about access on " + contact;
 			} else if (contact != "") {
 				s += "You can contact us about access on " + contact;
 			}
+			
 			$('#result').val(s);
 			$('#result').show();
+			
 			var text = $('#result')[0];
 			text.style.height = 10 + "px";
 			var adjustedHeight = text.clientHeight;
 			adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
 			adjustedHeight = adjustedHeight - 20;
 			text.style.height = adjustedHeight + "px";
-			/*$('#result').hide();
-			$('#result').slideDown();*/
+			
 			$('#select').show();
 		},
 		
@@ -500,27 +503,31 @@ var generator = (function ($) {
 			}
 			if (stepnumber == "\s") {stepnumber = "";}
 			
-			var paddedseating = $('#paddedseat')[0].checked;
-			var basicseating = $('#basicseat')[0].checked;
+			var paddedseating = $('#paddedseatingshort')[0].checked;
+			var basicseating = $('#basicseatingshort')[0].checked;
 			var wheelchairtoilet = $('#wheelchairtoiletshort')[0].checked;
 			var genderneutraltoilet = $('#genderneutraltoiletshort')[0].checked;
 			var hearingloop = $('#hearingloopshort')[0].checked;
 			var bsl = $('#bslshort')[0].checked;
-			var quiet = $('#quietshort')[0].checked;
-			var parking = $('#parkshort')[0].checked;
-			var blue = $('#blueshort')[0].checked;
-			var sub = $('#subshort')[0].checked;
+			var quiet = $('#quietspaceshort')[0].checked;
+			var parking = $('#parkingshort')[0].checked;
+			var blue = $('#bluebadgeshort')[0].checked;
+			var sub = $('#subtitlesshort')[0].checked;
 			var cc = $('#ccshort')[0].checked;
 			var audiodescription = $('#audiodescriptionshort')[0].checked;
 			var english = $('#englishaudioshort')[0].checked;
+			
 			var comment = $('#commentshort')[0].value;
 			if (comment == "\s") {comment = "";}
+			
 			var contact = $('#contactshort')[0].value;
 			if (contact == "\s") {contact = "";}
-			var yes = [];
+			
+			
 			//
 			//Generating the yes array for lists of what is available
 			//
+			var yes = [];
 			if (paddedseating == true) { yes.push("padded seating"); }
 			if (basicseating == true) { yes.push("basic seating"); }
 			if (wheelchairtoilet == true) { yes.push("an accessible toilet"); }
@@ -534,6 +541,7 @@ var generator = (function ($) {
 			if (cc == true) { yes.push("closed caption"); }
 			if (audiodescription == true) { yes.push("audio description"); }
 			if (english == true) { yes.push("english audio"); }
+			
 			//
 			// Statement generation starts here
 			//
@@ -552,6 +560,7 @@ var generator = (function ($) {
 				s += " via a secondary route";
 				var septext = ' to the main entrance';
 			}
+			
 			if (accessType != undefined && accessType != "" && stepnumber != "" && stepnumber != undefined) {
 				s += " and ";
 				prefix = "";
@@ -592,24 +601,29 @@ var generator = (function ($) {
 			} else if (yes.length == 1) {
 				s += "There is " + yes[0] + ". ";
 			}
+			
 			if (comment != "" && s != "") {
 				s += "\n" + comment;
 			} else if (comment != "") {
 				s += comment;
 			}
+			
 			if (contact != "" && s != "") {
 				s += "\n You can contact us about access on " + contact;
 			} else if (contact != "") {
 				s += "You can contact us about access on " + contact;
 			}
+			
 			$('#result').val(s);
 			$('#result').show();
+			
 			var text = $('#result')[0];
 			text.style.height = 10 + "px";
 			var adjustedHeight = text.clientHeight;
 			adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
 			adjustedHeight = adjustedHeight - 20;
 			text.style.height = adjustedHeight + "px";
+			
 			$('#select').show();
 		}
 	};
