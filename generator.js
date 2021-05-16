@@ -405,20 +405,12 @@ var generator = (function ($) {
 				}
 				s += ". ";
 			}
-			var index;
-			if (yes.length > 1) {
-				s += "There is ";
-				for (index in yes) {
-					if (index < yes.length - 1) {
-						s += yes[index] + ", ";
-					} else {
-						s += "and " + yes[index] + ". ";
-					}
-				}
-			} else if (yes.length == 1) {
-				s += "There is " + yes[0] + ". ";
-			}
 
+			// Process the 'yes' options
+			s += generator.compileOptions (yes, 'There is ');
+			
+			var index;
+			
 			if (reqad.length > 1) {
 				s += "There is ";
 				for (index in reqad) {
@@ -557,19 +549,8 @@ var generator = (function ($) {
 				s += ". ";
 			}
 
-			var index;
-			if (yes.length > 1) {
-				s += "There is ";
-				for (index in yes) {
-					if (index < yes.length - 1) {
-						s += yes[index] + ", ";
-					} else {
-						s += "and " + yes[index] + ". ";
-					}
-				}
-			} else if (yes.length == 1) {
-				s += "There is " + yes[0] + ". ";
-			}
+			// Process the checkbox options
+			s += generator.compileOptions (yes, 'There is ');
 			
 			// Add comment, if any
 			s += generator.processText (s, comment);
@@ -579,6 +560,33 @@ var generator = (function ($) {
 			
 			// Show the result
 			generator.showResult (s);
+		},
+		
+		
+		// Function to compile a list of options to a sentence
+		compileOptions: function (options, prefix)
+		{
+			// Return nothing if no value
+			if (!options.length) {return;}
+			
+			// Start with the prefix
+			var result = prefix;
+			
+			// If there is more than one, set the last also to have 'and' (assuming use of Oxford Comma)
+			var total = options.length;
+			if (total > 1) {
+				var lastIndex = total - 1;
+				options[lastIndex] = 'and ' + options[lastIndex];
+			}
+			
+			// Implode the list
+			result += options.join (', ');
+			
+			// End sentence with a dot
+			result += '. ';
+			
+			// Return the result
+			return result;
 		},
 		
 		
