@@ -503,44 +503,34 @@ var generator = (function ($) {
 			}
 			if (stepnumber == "\s") {stepnumber = "";}
 			
-			var paddedseating = $('#paddedseatingshort')[0].checked;
-			var basicseating = $('#basicseatingshort')[0].checked;
-			var wheelchairtoilet = $('#wheelchairtoiletshort')[0].checked;
-			var genderneutraltoilet = $('#genderneutraltoiletshort')[0].checked;
-			var hearingloop = $('#hearingloopshort')[0].checked;
-			var bsl = $('#bslshort')[0].checked;
-			var quiet = $('#quietspaceshort')[0].checked;
-			var parking = $('#parkingshort')[0].checked;
-			var blue = $('#bluebadgeshort')[0].checked;
-			var sub = $('#subtitlesshort')[0].checked;
-			var cc = $('#ccshort')[0].checked;
-			var audiodescription = $('#audiodescriptionshort')[0].checked;
-			var english = $('#englishaudioshort')[0].checked;
+			// Generate the yes array for lists of what is available
+			var checkboxes = {
+				paddedseatingshort: 'padded seating',
+				basicseatingshort: 'basic seating',
+				wheelchairtoiletshort: 'an accessible toilet',
+				genderneutraltoiletshort: 'a gender neutral toilet',
+				hearingloopshort: 'a hearing loop',
+				bslshort: 'a BSL interpreter',
+				quietspaceshort: 'a designated quiet space',
+				parkingshort: 'general car parking',
+				bluebadgeshort: 'blue badge parking',
+				subtitlesshort: 'subtitles',
+				ccshort: 'closed caption',
+				audiodescriptionshort: 'audio description',
+				englishaudioshort: 'english audio'
+			};
+			var yes = [];
+			$.each (checkboxes, function (id, string) {
+				if ($('#' + id)[0].checked) {
+					yes.push (string);
+				}
+			});
 			
 			var comment = $('#commentshort')[0].value;
 			if (comment == "\s") {comment = "";}
 			
 			var contact = $('#contactshort')[0].value;
 			if (contact == "\s") {contact = "";}
-			
-			
-			//
-			//Generating the yes array for lists of what is available
-			//
-			var yes = [];
-			if (paddedseating == true) { yes.push("padded seating"); }
-			if (basicseating == true) { yes.push("basic seating"); }
-			if (wheelchairtoilet == true) { yes.push("an accessible toilet"); }
-			if (genderneutraltoilet == true) { yes.push("a gender neutral toilet"); }
-			if (hearingloop == true) { yes.push("a hearing loop"); }
-			if (bsl == true) { yes.push("a BSL interpreter"); }
-			if (quiet == true) { yes.push("a designated quiet space"); }
-			if (parking == true) { yes.push("general car parking"); }
-			if (blue == true) { yes.push("blue badge parking"); }
-			if (sub == true) { yes.push("subtitles"); }
-			if (cc == true) { yes.push("closed caption"); }
-			if (audiodescription == true) { yes.push("audio description"); }
-			if (english == true) { yes.push("english audio"); }
 			
 			//
 			// Statement generation starts here
