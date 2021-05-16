@@ -131,14 +131,14 @@ var generator = (function ($) {
 		},
 		
 		
-		enableTree: function (where, on)
+		enableTree: function (where, enable)
 		{
 			if ($('#greyed')[0].checked) {
-				$('input, select', where).attr ('disabled', on ? null : 'disabled');
-				$('label', where).toggleClass ('grey', !on);
+				$('input, select', where).attr ('disabled', (enable ? null : 'disabled'));
+				$('label', where).toggleClass ('grey', !enable);
 				$(where).slideDown();
 			} else {
-				if (on) {
+				if (enable) {
 					$('label', where).removeClass ('grey');
 					$(where).slideDown();
 				} else {
@@ -162,19 +162,22 @@ var generator = (function ($) {
 		{
 			var accessType = $('#access input:checked').val ();
 			var separateRoute = $('#separateaccess_y')[0].checked;
-			generator.enableTree ($('#steps'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
+			var enable = !((accessType == 'wa' || accessType == 'sf') && separateRoute == false);
+			generator.enableTree ($('#steps'), enable);
 		},
 		
 		
 		accessChange: function ()
 		{
-			generator.enableTree ($('#separateaccess')[0], ($('#access_wa')[0].checked || $('#access_sf')[0].checked));
+			var enable = ($('#access_wa')[0].checked || $('#access_sf')[0].checked);
+			generator.enableTree ($('#separateaccess')[0], enable);
 		},
 		
 		
 		filmChange: function ()
 		{
-			generator.enableTree ($('#filmhide')[0], $('#film_y')[0].checked);
+			var enable = $('#film_y')[0].checked;
+			generator.enableTree ($('#filmhide')[0], enable);
 		},
 		
 		
@@ -200,13 +203,15 @@ var generator = (function ($) {
 		{
 			var accessType = $('#accessshort input:checked').val();
 			var separateRoute = $('#separateaccessshort_y')[0].checked;
-			generator.enableTree ($('#stepsshort'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
+			var enable = !((accessType == 'wa' || accessType == 'sf') && separateRoute == false);
+			generator.enableTree ($('#stepsshort'), enable);
 		},
 		
 		
 		accessChangeShort: function ()
 		{
-			generator.enableTree ($('#separateaccessshort')[0], ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked));
+			var enable = ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked);
+			generator.enableTree ($('#separateaccessshort')[0], enable);
 		},
 		
 		
