@@ -320,7 +320,7 @@ var generator = (function ($) {
 			
 			// Determine the facilities available / unavailable
 			// This generates the yes, no, reqad and req arrays for lists of what is available
-			var buckets = generator.determineFacilitiesAvailability ('#facilities');
+			var buckets = generator.determineFacilitiesAvailability ('#facilities', '');
 			
 			// Process the 'yes' options
 			s += generator.compileOptions (buckets.yes, 'There is ', 'and');
@@ -348,34 +348,41 @@ var generator = (function ($) {
 		
 		
 		// Function to determine the facilities available / unavailable
-		determineFacilitiesAvailability: function (divContainer)
+		determineFacilitiesAvailability: function (divContainer, fieldSuffix)
 		{
 			// Generate the yes, no, reqad and req arrays for lists of what is available
-			var options = {
-				seating,
-				wheelchairtoilet,
-				genderneutraltoilet,
-				hearingloop,
-				bsl,
-				quietspace,
-				parking,
-				bluebadge,
-				subtitles,
-				cc,
-				audiodescription,
-				englishaudio,
-			};
+			var options = [
+				'seating',			// Present only in the standard form
+				'paddedseating',		// Used instead of seating for the short form
+				'basicseating',		// Used instead of seating for the short form
+				'wheelchairtoilet',
+				'genderneutraltoilet',
+				'hearingloop',
+				'bsl',
+				'quietspace',
+				'parking',
+				'bluebadge',
+				'subtitles',
+				'cc',
+				'audiodescription',
+				'englishaudio',
+			];
 			
 			// Initialise buckets for each group
 			var buckets = {yes: [], no: [], reqad: [], req: []};
 			
 			// Determine the chosen group, and the value for each option
+			var inputSelector;
 			var splitRegexp = /^(yes|no|reqad|req): (.+)/;
 			var matches, value, description;
-			$.each (options, function (option) {
+			$.each (options, function (index, option) {
+				
+				// Check the widget exists for this version of the form
+				inputSelector = divContainer + ' input[name="' + option + fieldSuffix + '"]:checked';
+				if (!$(inputSelector).length) {return;}	// I.e. continue to next
 				
 				// Obtain the value, or skip if not answered
-				value = $(divContainer + ' input[name="' + option + '"]:checked').val();
+				value = $(inputSelector).val();
 				if (!value) {return;}	// I.e. continue to next
 				
 				// Split out the value; e.g. "yes: a hearing loop" would be put in the "yes" group with "a hearing loop" as the description
@@ -407,30 +414,6 @@ var generator = (function ($) {
 			if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
 				stepnumber = $('#stepsshort_data')[0].value.trim();
 			}
-			
-			// Generate the yes array for lists of what is available
-			var checkboxes = {
-				paddedseatingshort: 'padded seating',
-				basicseatingshort: 'basic seating',
-				wheelchairtoiletshort: 'an accessible toilet',
-				genderneutraltoiletshort: 'a gender neutral toilet',
-				hearingloopshort: 'a hearing loop',
-				bslshort: 'a BSL interpreter',
-				quietspaceshort: 'a designated quiet space',
-				parkingshort: 'general car parking',
-				bluebadgeshort: 'blue badge parking',
-				subtitlesshort: 'subtitles',
-				ccshort: 'closed caption',
-				audiodescriptionshort: 'audio description',
-				englishaudioshort: 'english audio'
-			};
-			var yes = [];
-			$.each (checkboxes, function (id, string) {
-				if ($('#' + id)[0].checked) {
-					yes.push (string);
-				}
-			});
-			
 			
 			//
 			// Statement generation starts here
@@ -478,8 +461,12 @@ var generator = (function ($) {
 				s += ". ";
 			}
 
+			// Determine the facilities available / unavailable
+			// This generates the yes, no, reqad and req arrays for lists of what is available
+			var buckets = generator.determineFacilitiesAvailability ('#facilitiesshort', 'short');
+			
 			// Process the checkbox options
-			s += generator.compileOptions (yes, 'There is ');
+			s += generator.compileOptions (buckets.yes, 'There is ', 'and');
 			
 			// Add comment, if any
 			var comment = $('#commentshort')[0].value.trim();
