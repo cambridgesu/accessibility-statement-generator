@@ -240,8 +240,7 @@ var generator = (function ($) {
 			var stepheight = "";
 			var handrail = "";
 			if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-				stepnumber = $('#steps_count')[0].value;
-				if (stepnumber == "\s") {stepnumber = "";}
+				stepnumber = $('#steps_count')[0].value.trim();
 				stepheight = $('#steps_height input:checked').val();
 				handrail = $('#steps_hr input:checked').val();
 			}
@@ -267,10 +266,8 @@ var generator = (function ($) {
 				english = $('#englishaudio input:checked').val();
 			}
 			
-			var comment = $('#comment')[0].value;
-			if (comment == "\s") {comment = "";}
-			var contact = $('#contact')[0].value;
-			if (contact == "\s") {contact = "";}
+			var comment = $('#comment')[0].value.trim();
+			var contact = $('#contact')[0].value.trim();
 			var yes = [];
 			var no = [];
 			var reqad = [];
@@ -499,9 +496,8 @@ var generator = (function ($) {
 			
 			var stepnumber = "";
 			if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-				stepnumber = $('#stepsshort_data')[0].value;
+				stepnumber = $('#stepsshort_data')[0].value.trim();
 			}
-			if (stepnumber == "\s") {stepnumber = "";}
 			
 			// Generate the yes array for lists of what is available
 			var checkboxes = {
@@ -526,11 +522,9 @@ var generator = (function ($) {
 				}
 			});
 			
-			var comment = $('#commentshort')[0].value;
-			if (comment == "\s") {comment = "";}
+			var comment = $('#commentshort')[0].value.trim();
 			
-			var contact = $('#contactshort')[0].value;
-			if (contact == "\s") {contact = "";}
+			var contact = $('#contactshort')[0].value.trim();
 			
 			//
 			// Statement generation starts here
