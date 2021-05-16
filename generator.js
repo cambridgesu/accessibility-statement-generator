@@ -11,7 +11,8 @@ $(document).ready (function () {
 		$(s).addClass('tooltipindicator');
 	});
 	
-	
+	// Hide JS message and show section as JS support confirmed
+	$('.noJS').hide();
 	$('.requireJS').show();
 	
 	function toggle(toggle) {
@@ -66,8 +67,6 @@ $(document).ready (function () {
 });
 
 $(document).ready(function () {
-	$('.noJS').hide();
-	$('.requireJS').show();
 
 	function enableTree(where, on) {
 		if ($('#greyed')[0].checked) {
@@ -124,9 +123,8 @@ $(document).ready(function () {
 	$('#greyed').click(refresh);
 	$('#type').click(refresh);
 });
+
 $(document).ready(function () {
-	$('.noJS').hide();
-	$('.requireJS').show();
 	
 	function enableTree(where, on) {
 		if ($('#greyed')[0].checked) {
