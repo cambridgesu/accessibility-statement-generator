@@ -1,6 +1,6 @@
 # Accessibility statement generator
 
-Designed and written by [Rowan Thomas](https://github.com/mxrowanthomas) for [CUSU Disabled Students' Campaign](http://www.disabled.cusu.cam.ac.uk/).
+Originally designed and written by [Rowan Thomas](https://github.com/mxrowanthomas). Maintained by the [Cambridge SU Disabled Students' Campaign](http://www.disabled.cusu.cam.ac.uk/).
 
 ## Embedding in Wordpress
 
