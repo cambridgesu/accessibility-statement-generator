@@ -245,9 +245,6 @@ var generator = (function ($) {
 				handrail = $('#steps_hr input:checked').val();
 			}
 			
-			var comment = $('#comment')[0].value.trim();
-			var contact = $('#contact')[0].value.trim();
-			
 			//
 			// Statement generation starts here
 			//
@@ -338,9 +335,11 @@ var generator = (function ($) {
 			s += generator.compileOptions (buckets.no, "There isn't ", 'or');
 			
 			// Add comment, if any
+			var comment = $('#comment')[0].value.trim ();
 			s += generator.processText (s, comment);
 			
 			// Add contact details, if any
+			var contact = $('#contact')[0].value.trim ();
 			s += generator.processText (s, contact, 'You can contact us about access on ');
 			
 			// Show the result
@@ -432,8 +431,6 @@ var generator = (function ($) {
 				}
 			});
 			
-			var comment = $('#commentshort')[0].value.trim();
-			var contact = $('#contactshort')[0].value.trim();
 			
 			//
 			// Statement generation starts here
@@ -485,9 +482,11 @@ var generator = (function ($) {
 			s += generator.compileOptions (yes, 'There is ');
 			
 			// Add comment, if any
+			var comment = $('#commentshort')[0].value.trim();
 			s += generator.processText (s, comment);
 			
 			// Add contact details, if any
+			var contact = $('#contactshort')[0].value.trim();
 			s += generator.processText (s, contact, 'You can contact us about access on ');
 			
 			// Show the result
