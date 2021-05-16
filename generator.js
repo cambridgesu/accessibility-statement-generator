@@ -250,20 +250,20 @@ var generator = (function ($) {
 			var genderneutraltoilet = $('#genderneutraltoilet input:checked').val();
 			var hearingloop = $('#hearingloop input:checked').val();
 			var bsl = $('#bsl input:checked').val();
-			var quiet = $('#quiet input:checked').val();
+			var quietspace = $('#quietspace input:checked').val();
 			var parking = $('#park input:checked').val();
-			var blue = $('#blue input:checked').val();
-			var film = $('#film input:checked').val();
+			var bluebadge = $('#bluebadge input:checked').val();
 			
-			var sub = "";
+			var film = $('#film input:checked').val();
+			var subtitles = "";
 			var cc = "";
 			var audiodescription = "";
-			var english = "";
+			var englishaudio = "";
 			if (film == "y") {
-				sub = $('#sub input:checked').val();
+				subtitles = $('#subtitles input:checked').val();
 				cc = $('#cc input:checked').val();
 				audiodescription = $('#audiodescription input:checked').val();
-				english = $('#englishaudio input:checked').val();
+				englishaudio = $('#englishaudio input:checked').val();
 			}
 			
 			var comment = $('#comment')[0].value.trim();
@@ -298,25 +298,25 @@ var generator = (function ($) {
 			else if (bsl == "reqad") { reqad.push("a BSL interpreter"); }
 			else if (bsl == "req") { req.push("a BSL interpreter"); }
 
-			if (quiet == "y") { yes.push("a designated quiet space"); }
-			else if (quiet == "n") { no.push("a designated quiet space"); }
-			else if (quiet == "reqad") { reqad.push("a designated quiet space"); }
-			else if (quiet == "req") { req.push("a designated quiet space"); }
+			if (quietspace == "y") { yes.push("a designated quiet space"); }
+			else if (quietspace == "n") { no.push("a designated quiet space"); }
+			else if (quietspace == "reqad") { reqad.push("a designated quiet space"); }
+			else if (quietspace == "req") { req.push("a designated quiet space"); }
 
 			if (parking == "y") { yes.push("general car parking"); }
 			else if (parking == "n") { no.push("general car parking"); }
 			else if (parking == "reqad") { reqad.push("general car parking"); }
 			else if (parking == "req") { req.push("general car parking"); }
 
-			if (blue == "y") { yes.push("blue badge parking"); }
-			else if (blue == "n") { no.push("blue badge parking"); }
-			else if (blue == "reqad") { reqad.push("blue badge parking"); }
-			else if (blue == "req") { req.push("blue badge parking"); }
+			if (bluebadge == "y") { yes.push("blue badge parking"); }
+			else if (bluebadge == "n") { no.push("blue badge parking"); }
+			else if (bluebadge == "reqad") { reqad.push("blue badge parking"); }
+			else if (bluebadge == "req") { req.push("blue badge parking"); }
 
-			if (sub == "y") { yes.push("subtitles"); }
-			else if (sub == "n") { no.push("subtitles"); }
-			else if (sub == "reqad") { reqad.push("subtitles"); }
-			else if (sub == "req") { req.push("subtitles"); }
+			if (subtitles == "y") { yes.push("subtitles"); }
+			else if (subtitles == "n") { no.push("subtitles"); }
+			else if (subtitles == "reqad") { reqad.push("subtitles"); }
+			else if (subtitles == "req") { req.push("subtitles"); }
 
 			if (cc == "y") { yes.push("closed caption"); }
 			else if (cc == "n") { no.push("closed caption"); }
@@ -328,10 +328,10 @@ var generator = (function ($) {
 			else if (audiodescription == "reqad") { reqad.push("audio description"); }
 			else if (audiodescription == "req") { req.push("audio description"); }
 
-			if (english == "y") { yes.push("english audio"); }
-			else if (english == "n") { no.push("english audio"); }
-			else if (english == "reqad") { reqad.push("english audio"); }
-			else if (english == "req") { req.push("english audio"); }
+			if (englishaudio == "y") { yes.push("english audio"); }
+			else if (englishaudio == "n") { no.push("english audio"); }
+			else if (englishaudio == "reqad") { reqad.push("english audio"); }
+			else if (englishaudio == "req") { req.push("english audio"); }
 
 			//
 			// Statement generation starts here
