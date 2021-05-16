@@ -1,39 +1,68 @@
-$(document).ready(function () {
-	$('span[title]').each(function (i, s) {
+/*jslint browser: true, white: true, single: true, for: true, long: true */
+/*global $, alert, console, window */
+
+
+$(document).ready (function () {
+	
+	$('span[title]').each (function (i, s) {
 		$(s).parent()[0].title = s.title;
 		$(s).parent().tooltip();
 		$(s).text('?');
 		$(s).addClass('tooltipindicator');
 	});
+	
+	
 	$('.requireJS').show();
+	
 	function toggle(toggle) {
-		$(toggle).closest("div").css({ borderStyle: toggle.checked ? 'inset' : 'outset' });
-		if (toggle.checked) { $(toggle).parent().find('.selected').show(); $(toggle).parent().find('.unselected').hide(); }
-		else { $(toggle).parent().find('.selected').hide(); $(toggle).parent().find('.unselected').show(); }
-
-	};
+		$(toggle).closest("div").css({
+			borderStyle: (toggle.checked ? 'inset' : 'outset')
+		});
+		if (toggle.checked) {
+			$(toggle).parent().find('.selected').show();
+			$(toggle).parent().find('.unselected').hide();
+		} else {
+			$(toggle).parent().find('.selected').hide();
+			$(toggle).parent().find('.unselected').show();
+		}
+	}
+	
 	function choosetype() {
 		$('#result').hide();
 		$('#select').hide();
 		if ($("#type")[0].checked) {
-			$(questions).fadeOut(function () { $(shortquestions).fadeIn('slow'); });
+			$('#questions').fadeOut(function () {
+				$('#shortquestions').fadeIn('slow');
+			});
 		}
 		else {
-			$(shortquestions).fadeOut(function () { $(questions).fadeIn('slow'); });
-		};
-	};
+			$('#shortquestions').fadeOut(function () {
+				$('#questions').fadeIn('slow');
+			});
+		}
+	}
+	
 	function generatechoice() {
-		if ($("#type")[0].checked) { generateshort() }
-		else { generate() };
-	};
-	$(shortquestions).hide();
+		if ($("#type")[0].checked) {
+			generateshort();
+		} else {
+			generate();
+		}
+	}
+	$('#shortquestions').hide();
 	toggle($("#greyed"));
-	$("#greyed").click(function () { toggle($('#greyed')[0]) });
+	$("#greyed").click(function () {
+		toggle($('#greyed')[0]);
+	});
 	toggle($("#type"));
-	$("#type").click(function () { toggle($("#type")[0]) });
+	$("#type").click(function () {
+		toggle($("#type")[0]);
+	});
 	$("#type").click(choosetype);
 	$("#generate button").click(generatechoice);
-	$("#select").click(function () { $('#result').focus(); $('#result').select(); });
+	$("#select").click(function () {
+		$('#result').focus(); $('#result').select();
+	});
 });
 
 $(document).ready(function () {
@@ -45,8 +74,7 @@ $(document).ready(function () {
 			$('input, select', where).attr('disabled', on ? null : 'disabled');
 			$('label', where).toggleClass('grey', !on);
 			$(where).slideDown();
-		}
-		else {
+		} else {
 			if (on) {
 				$('label', where).removeClass('grey');
 				$(where).slideDown();
@@ -55,24 +83,25 @@ $(document).ready(function () {
 				$(where).slideUp();
 			}
 		}
-	};
+	}
 	function toggle_steps() {
 		var accessType = $('#access input:checked').val();
 		var separateRoute = $('#separateaccess_y')[0].checked;
 		enableTree($('#steps'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
-	};
+	}
 	function access_change() {
 		enableTree($('#separateaccess')[0], ($('#access_wa')[0].checked || $('#access_sf')[0].checked));
-	};
+	}
 	function separatewording() {
 		if ($('#separateaccess_y')[0].checked) {
 			$("#separateshow").show();
+		} else {
+			$("#separateshow").hide();
 		}
-		else $("#separateshow").hide();
 	}
 	function film_change() {
 		enableTree($('#filmhide')[0], $('#film_y')[0].checked);
-	};
+	}
 	function refresh() {
 		toggle_steps();
 		access_change();
@@ -114,20 +143,21 @@ $(document).ready(function () {
 				$(where).slideUp();
 			}
 		}
-	};
+	}
 	function toggle_stepsshort() {
 		var accessType = $('#accessshort input:checked').val();
 		var separateRoute = $('#separateaccessshort_y')[0].checked;
 		enableTree($('#stepsshort'), !((accessType == 'wa' || accessType == 'sf') && separateRoute == false));
-	};
+	}
 	function access_changeshort() {
 		enableTree($('#separateaccessshort')[0], ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked));
-	};
+	}
 	function separatewordingshort() {
 		if ($('#separateaccessshort_y')[0].checked) {
 			$("#separateshowshort").show();
+		} else {
+			$("#separateshowshort").hide();
 		}
-		else $("#separateshowshort").hide();
 	}
 	function refreshshort() {
 		toggle_stepsshort();
@@ -153,17 +183,22 @@ $(document).ready(function () {
 function generate() {
 	var s = '';
 	var accessType = $('#access input:checked').val();
+	
+	var separateRoute = false;
 	if ($('#access_wa')[0].checked || $('#access_sf')[0].checked) {
-		var separateRoute = $('#separateaccess_y')[0].checked;
+		separateRoute = $('#separateaccess_y')[0].checked;
 	}
-	else var separateRoute = false;
+	
+	var stepnumber = "";
+	var stepheight = "";
+	var handrail = "";
 	if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-		var stepnumber = $('#steps_count')[0].value;
-		if (stepnumber == "\s") stepnumber = "";
-		var stepheight = $('#steps_height input:checked').val();
-		var handrail = $('#steps_hr input:checked').val();
+		stepnumber = $('#steps_count')[0].value;
+		if (stepnumber == "\s") {stepnumber = "";}
+		stepheight = $('#steps_height input:checked').val();
+		handrail = $('#steps_hr input:checked').val();
 	}
-	else { stepnumber = ""; stepheight = ""; handrail = ""; }
+	
 	var seating = $('#seat input:checked').val();
 	var wheelchairtoilet = $('#wheelchairtoilet input:checked').val();
 	var genderneutraltoilet = $('#genderneutraltoilet input:checked').val();
@@ -173,17 +208,22 @@ function generate() {
 	var parking = $('#park input:checked').val();
 	var blue = $('#blue input:checked').val();
 	var film = $('#film input:checked').val();
+	
+	var sub = "";
+	var cc = "";
+	var audiodescription = "";
+	var english = "";
 	if (film == "y") {
-		var sub = $('#sub input:checked').val();
-		var cc = $('#cc input:checked').val();
-		var audiodescription = $('#audiodescription input:checked').val();
-		var english = $('#englishaudio input:checked').val();
+		sub = $('#sub input:checked').val();
+		cc = $('#cc input:checked').val();
+		audiodescription = $('#audiodescription input:checked').val();
+		english = $('#englishaudio input:checked').val();
 	}
-	else { sub == ""; cc = ""; audiodescription = ""; english = ""; }
+	
 	var comment = $('#comment')[0].value;
-	if (comment == "\s") comment = "";
+	if (comment == "\s") {comment = "";}
 	var contact = $('#contact')[0].value;
-	if (contact == "\s") contact = "";
+	if (contact == "\s") {contact = "";}
 	var yes = [];
 	var no = [];
 	var reqad = [];
@@ -272,73 +312,116 @@ function generate() {
 	if (accessType != undefined && accessType != "" && stepinfo) {
 		s += " and ";
 		prefix = "";
-	}
-	else if (accessType != undefined && accessType != "")
+	} else if (accessType != undefined && accessType != "") {
 		s += postfix;
-	else if (stepnumber != "1" && stepnumber != "one")
+	} else if (stepnumber != "1" && stepnumber != "one") {
 		prefix = "There are ";
+	}
 	if (stepinfo) {
 		if (stepnumber == "1" || stepnumber == "one") {
-			if (stepheight == "lip") { postfix = "a lip"; } else postfix = "step";
-		}
-		else {
-			if (stepheight == "lip") { postfix = "lips"; } else postfix = "steps";
+			if (stepheight == "lip") {
+				postfix = "a lip";
+			} else {
+				postfix = "step";
+			}
+		} else {
+			if (stepheight == "lip") {
+				postfix = "lips";
+			} else {
+				postfix = "steps";
+			}
 		}
 		if (stepheight == "lip") {
-			if (stepnumber != "") { s += prefix + stepnumber + " " + postfix; }
-			else { s += prefix + postfix; }
+			if (stepnumber != "") {
+				s += prefix + stepnumber + " " + postfix;
+			} else {
+				s += prefix + postfix;
+			}
+		} else {
+			if (stepnumber != "" && (stepheight != undefined && stepheight != "")) {
+				s += prefix + stepnumber + " " + stepheight + " " + postfix;
+			} else if (stepnumber != "") {
+				s += prefix + stepnumber + " " + postfix;
+			} else if (stepheight != undefined && stepheight != "") {
+				s += prefix + stepheight + " " + postfix;
+			} else {
+				s += prefix + postfix;
+			}
 		}
-		else {
-			if (stepnumber != "" && (stepheight != undefined && stepheight != "")) { s += prefix + stepnumber + " " + stepheight + " " + postfix; }
-			else if (stepnumber != "") { s += prefix + stepnumber + " " + postfix; }
-			else if (stepheight != undefined && stepheight != "") { s += prefix + stepheight + " " + postfix; }
-			else { s += prefix + postfix; }
+		if (handrail == "no") {
+			s += ", with no handrail";
+		} else if (handrail == "one") {
+			s += ", with a handrail on one side";
+		} else if (handrail == "both") {
+			s += ", with a handrail on both sides";
 		}
-		if (handrail == "no") { s += ", with no handrail"; }
-		else if (handrail == "one") { s += ", with a handrail on one side"; }
-		else if (handrail == "both") { s += ", with a handrail on both sides"; }
-		if (septext != undefined) s += septext;
+		if (septext != undefined) {
+			s += septext;
+		}
 		s += ". ";
 	}
+	var index;
 	if (yes.length > 1) {
-		s += "There is "
-		for (var index in yes) {
-			if (index < yes.length - 1) s += yes[index] + ", ";
-			else s += "and " + yes[index] + ". ";
+		s += "There is ";
+		for (index in yes) {
+			if (index < yes.length - 1) {
+				s += yes[index] + ", ";
+			} else {
+				s += "and " + yes[index] + ". ";
+			}
 		}
+	} else if (yes.length == 1) {
+		s += "There is " + yes[0] + ". ";
 	}
-	else if (yes.length == 1) s += "There is " + yes[0] + ". ";
 
 	if (reqad.length > 1) {
-		s += "There is "
-		for (var index in reqad) {
-			if (index < reqad.length - 1) s += reqad[index] + ", ";
-			else s += "and " + reqad[index] + " by request in advance. ";
+		s += "There is ";
+		for (index in reqad) {
+			if (index < reqad.length - 1) {
+				s += reqad[index] + ", ";
+			} else {
+				s += "and " + reqad[index] + " by request in advance. ";
+			}
 		}
+	} else if (reqad.length == 1) {
+		s += "There is " + reqad[0] + " by request in advance. ";
 	}
-	else if (reqad.length == 1) s += "There is " + reqad[0] + " by request in advance. ";
 
 	if (req.length > 1) {
-		s += "There is "
-		for (var index in req) {
-			if (index < req.length - 1) s += req[index] + ", ";
-			else s += "and " + req[index] + " by request at the event. ";
+		s += "There is ";
+		for (index in req) {
+			if (index < req.length - 1) {
+				s += req[index] + ", ";
+			} else {
+				s += "and " + req[index] + " by request at the event. ";
+			}
 		}
+	} else if (req.length == 1) {
+		s += "There is " + req[0] + " by request at the event. ";
 	}
-	else if (req.length == 1) s += "There is " + req[0] + " by request at the event. ";
 
 	if (no.length > 1) {
-		s += "This isn't "
-		for (var index in no) {
-			if (index < no.length - 1) s += no[index] + ", ";
-			else s += "or " + no[index] + ". ";
+		s += "This isn't ";
+		for (index in no) {
+			if (index < no.length - 1) {
+				s += no[index] + ", ";
+			} else {
+				s += "or " + no[index] + ". ";
+			}
 		}
+	} else if (no.length == 1) {
+		s += "There isn't " + no[0] + ". ";
 	}
-	else if (no.length == 1) s += "There isn't " + no[0] + ". ";
-	if (comment != "" && s != "") s += "\n" + comment;
-	else if (comment != "") s += comment;
-	if (contact != "" && s != "") s += "\n You can contact us about access on " + contact;
-	else if (contact != "") s += "You can contact us about access on " + contact;
+	if (comment != "" && s != "") {
+		s += "\n" + comment;
+	} else if (comment != "") {
+		s += comment;
+	}
+	if (contact != "" && s != "") {
+		s += "\n You can contact us about access on " + contact;
+	} else if (contact != "") {
+		s += "You can contact us about access on " + contact;
+	}
 	$('#result').val(s);
 	$('#result').show();
 	var text = $('#result')[0];
@@ -349,23 +432,26 @@ function generate() {
 	text.style.height = adjustedHeight + "px";
 	/*$('#result').hide();
 	$('#result').slideDown();*/
-	$(select).show();
-};
+	$('#select').show();
+}
 //
 //generating function for the short version
 //
 function generateshort() {
 	var s = '';
 	var accessType = $('#accessshort input:checked').val();
+	
+	var separateRoute = false;
 	if ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked) {
-		var separateRoute = $('#separateaccessshort_y')[0].checked;
+		separateRoute = $('#separateaccessshort_y')[0].checked;
 	}
-	else var separateRoute = false;
+	
+	var stepnumber = "";
 	if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-		var stepnumber = $('#stepsshort_data')[0].value;
+		stepnumber = $('#stepsshort_data')[0].value;
 	}
-	else var stepnumber = "";
-	if (stepnumber == "\s") stepnumber = "";
+	if (stepnumber == "\s") {stepnumber = "";}
+	
 	var paddedseating = $('#paddedseat')[0].checked;
 	var basicseating = $('#basicseat')[0].checked;
 	var wheelchairtoilet = $('#wheelchairtoiletshort')[0].checked;
@@ -380,9 +466,9 @@ function generateshort() {
 	var audiodescription = $('#audiodescriptionshort')[0].checked;
 	var english = $('#englishaudioshort')[0].checked;
 	var comment = $('#commentshort')[0].value;
-	if (comment == "\s") comment = "";
+	if (comment == "\s") {comment = "";}
 	var contact = $('#contactshort')[0].value;
-	if (contact == "\s") contact = "";
+	if (contact == "\s") {contact = "";}
 	var yes = [];
 	//
 	//Generating the yes array for lists of what is available
@@ -421,9 +507,9 @@ function generateshort() {
 	if (accessType != undefined && accessType != "" && stepnumber != "" && stepnumber != undefined) {
 		s += " and ";
 		prefix = "";
-	}
-	else if (accessType != undefined && accessType != "")
+	} else if (accessType != undefined && accessType != "") {
 		s += postfix;
+	}
 
 	if (stepnumber != "" && stepnumber != undefined) {
 		if (stepnumber == "1" || stepnumber == "one") {
@@ -434,26 +520,40 @@ function generateshort() {
 			prefix += "There are ";
 			postfix = " steps";
 		}
-		if (accessType != undefined && accessType != "")
+		if (accessType != undefined && accessType != "") {
 			s += stepnumber + postfix;
-		else
+		} else {
 			s += prefix + stepnumber + postfix;
-		if (septext != undefined) s += septext;
-		s += ". "
+		}
+		if (septext != undefined) {
+			s += septext;
+		}
+		s += ". ";
 	}
 
+	var index;
 	if (yes.length > 1) {
-		s += "There is "
-		for (var index in yes) {
-			if (index < yes.length - 1) s += yes[index] + ", ";
-			else s += "and " + yes[index] + ". ";
+		s += "There is ";
+		for (index in yes) {
+			if (index < yes.length - 1) {
+				s += yes[index] + ", ";
+			} else {
+				s += "and " + yes[index] + ". ";
+			}
 		}
+	} else if (yes.length == 1) {
+		s += "There is " + yes[0] + ". ";
 	}
-	else if (yes.length == 1) s += "There is " + yes[0] + ". ";
-	if (comment != "" && s != "") s += "\n" + comment;
-	else if (comment != "") s += comment;
-	if (contact != "" && s != "") s += "\n You can contact us about access on " + contact;
-	else if (contact != "") s += "You can contact us about access on " + contact;
+	if (comment != "" && s != "") {
+		s += "\n" + comment;
+	} else if (comment != "") {
+		s += comment;
+	}
+	if (contact != "" && s != "") {
+		s += "\n You can contact us about access on " + contact;
+	} else if (contact != "") {
+		s += "You can contact us about access on " + contact;
+	}
 	$('#result').val(s);
 	$('#result').show();
 	var text = $('#result')[0];
@@ -462,5 +562,5 @@ function generateshort() {
 	adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
 	adjustedHeight = adjustedHeight - 20;
 	text.style.height = adjustedHeight + "px";
-	$(select).show();
-};
+	$('#select').show();
+}
