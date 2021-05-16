@@ -407,48 +407,16 @@ var generator = (function ($) {
 			}
 
 			// Process the 'yes' options
-			s += generator.compileOptions (yes, 'There is ');
+			s += generator.compileOptions (yes, 'There is ', 'and');
 			
-			var index;
+			// Process the 'by request in advance' options
+			s += generator.compileOptions (reqad, 'There is ', 'and', ', by request in advance');
 			
-			if (reqad.length > 1) {
-				s += "There is ";
-				for (index in reqad) {
-					if (index < reqad.length - 1) {
-						s += reqad[index] + ", ";
-					} else {
-						s += "and " + reqad[index] + " by request in advance. ";
-					}
-				}
-			} else if (reqad.length == 1) {
-				s += "There is " + reqad[0] + " by request in advance. ";
-			}
-
-			if (req.length > 1) {
-				s += "There is ";
-				for (index in req) {
-					if (index < req.length - 1) {
-						s += req[index] + ", ";
-					} else {
-						s += "and " + req[index] + " by request at the event. ";
-					}
-				}
-			} else if (req.length == 1) {
-				s += "There is " + req[0] + " by request at the event. ";
-			}
-
-			if (no.length > 1) {
-				s += "This isn't ";
-				for (index in no) {
-					if (index < no.length - 1) {
-						s += no[index] + ", ";
-					} else {
-						s += "or " + no[index] + ". ";
-					}
-				}
-			} else if (no.length == 1) {
-				s += "There isn't " + no[0] + ". ";
-			}
+			// Process the 'by request at the event' options
+			s += generator.compileOptions (req, 'There is ', 'and', ', by request at the event');
+			
+			// Process the 'no' options
+			s += generator.compileOptions (no, "There isn't ", 'or');
 			
 			// Add comment, if any
 			s += generator.processText (s, comment);
@@ -564,7 +532,7 @@ var generator = (function ($) {
 		
 		
 		// Function to compile a list of options to a sentence
-		compileOptions: function (options, prefix)
+		compileOptions: function (options, prefix, separator, suffix)
 		{
 			// Return nothing if no value
 			if (!options.length) {return;}
@@ -572,15 +540,20 @@ var generator = (function ($) {
 			// Start with the prefix
 			var result = prefix;
 			
-			// If there is more than one, set the last also to have 'and' (assuming use of Oxford Comma)
+			// If there is more than one, set the last also to have the separator (e.g. and/or) (assuming use of Oxford Comma)
 			var total = options.length;
 			if (total > 1) {
 				var lastIndex = total - 1;
-				options[lastIndex] = 'and ' + options[lastIndex];
+				options[lastIndex] = separator + ' ' + options[lastIndex];
 			}
 			
 			// Implode the list
 			result += options.join (', ');
+			
+			// Add suffix if required
+			if (suffix) {
+				result += suffix;
+			}
 			
 			// End sentence with a dot
 			result += '. ';
