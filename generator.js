@@ -320,7 +320,7 @@ var generator = (function ($) {
 			
 			// Determine the facilities available / unavailable
 			// This generates the yes, no, reqad and req arrays for lists of what is available
-			var buckets = generator.determineFacilitiesAvailability ();
+			var buckets = generator.determineFacilitiesAvailability ('#facilities');
 			
 			// Process the 'yes' options
 			s += generator.compileOptions (buckets.yes, 'There is ', 'and');
@@ -348,7 +348,7 @@ var generator = (function ($) {
 		
 		
 		// Function to determine the facilities available / unavailable
-		determineFacilitiesAvailability: function ()
+		determineFacilitiesAvailability: function (divContainer)
 		{
 			// Generate the yes, no, reqad and req arrays for lists of what is available
 			var options = {
@@ -375,7 +375,7 @@ var generator = (function ($) {
 			$.each (options, function (option) {
 				
 				// Obtain the value, or skip if not answered
-				value = $('#' + option + ' input:checked').val();
+				value = $(divContainer + ' input[name="' + option + '"]:checked').val();
 				if (!value) {return;}	// I.e. continue to next
 				
 				// Split out the value; e.g. "yes: a hearing loop" would be put in the "yes" group with "a hearing loop" as the description
