@@ -236,11 +236,11 @@ var generator = (function ($) {
 				separateRoute = $('#separateaccess_yes')[0].checked;
 			}
 			
-			var stepnumber = "";
+			var stepNumber = "";
 			var stepheight = "";
 			var handrail = "";
 			if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-				stepnumber = $('#steps_count')[0].value.trim();
+				stepNumber = $('#steps_count')[0].value.trim();
 				stepheight = $('#steps_height input:checked').val();
 				handrail = $('#steps_hr input:checked').val();
 			}
@@ -252,7 +252,7 @@ var generator = (function ($) {
 			var prefix = 'There is ';
 			var postfix = '. ';
 			var stepinfo = new Boolean();
-			stepinfo = (stepnumber != "" || (stepheight != undefined && stepheight != "") || (handrail != undefined && handrail != ""));
+			stepinfo = (stepNumber != "" || (stepheight != undefined && stepheight != "") || (handrail != undefined && handrail != ""));
 
 			if (accessType == 'wa') {
 				s += prefix + "wheelchair access";
@@ -271,11 +271,11 @@ var generator = (function ($) {
 				prefix = "";
 			} else if (accessType != undefined && accessType != "") {
 				s += postfix;
-			} else if (stepnumber != "1" && stepnumber != "one") {
+			} else if (stepNumber != "1" && stepNumber != "one") {
 				prefix = "There are ";
 			}
 			if (stepinfo) {
-				if (stepnumber == "1" || stepnumber == "one") {
+				if (stepNumber == "1" || stepNumber == "one") {
 					if (stepheight == "lip") {
 						postfix = "a lip";
 					} else {
@@ -289,16 +289,16 @@ var generator = (function ($) {
 					}
 				}
 				if (stepheight == "lip") {
-					if (stepnumber != "") {
-						s += prefix + stepnumber + " " + postfix;
+					if (stepNumber != "") {
+						s += prefix + stepNumber + " " + postfix;
 					} else {
 						s += prefix + postfix;
 					}
 				} else {
-					if (stepnumber != "" && (stepheight != undefined && stepheight != "")) {
-						s += prefix + stepnumber + " " + stepheight + " " + postfix;
-					} else if (stepnumber != "") {
-						s += prefix + stepnumber + " " + postfix;
+					if (stepNumber != "" && (stepheight != undefined && stepheight != "")) {
+						s += prefix + stepNumber + " " + stepheight + " " + postfix;
+					} else if (stepNumber != "") {
+						s += prefix + stepNumber + " " + postfix;
 					} else if (stepheight != undefined && stepheight != "") {
 						s += prefix + stepheight + " " + postfix;
 					} else {
@@ -410,9 +410,9 @@ var generator = (function ($) {
 				separateRoute = $('#separateaccessshort_yes')[0].checked;
 			}
 			
-			var stepnumber = "";
-			if (!((accessType == 'wa' || accessType == 'sf') && separateRoute == false)) {
-				stepnumber = $('#stepsshort_data')[0].value.trim();
+			var stepNumber = '';
+			if (! ( (accessType == 'wa' || accessType == 'sf') && separateRoute == false) ) {
+				stepNumber = $('#stepsshort_data')[0].value.trim();
 			}
 			
 			//
@@ -434,26 +434,25 @@ var generator = (function ($) {
 				var septext = ' to the main entrance';
 			}
 			
-			if (accessType != undefined && accessType != "" && stepnumber != "" && stepnumber != undefined) {
+			if (accessType != undefined && accessType != "" && stepNumber != "" && stepNumber != undefined) {
 				s += " and ";
 				prefix = "";
 			} else if (accessType != undefined && accessType != "") {
 				s += postfix;
 			}
 
-			if (stepnumber != "" && stepnumber != undefined) {
-				if (stepnumber == "1" || stepnumber == "one") {
+			if (stepNumber != "" && stepNumber != undefined) {
+				if (stepNumber == "1" || stepNumber == "one") {
 					prefix = "There is ";
 					postfix = " step";
-				}
-				else {
+				} else {
 					prefix += "There are ";
 					postfix = " steps";
 				}
 				if (accessType != undefined && accessType != "") {
-					s += stepnumber + postfix;
+					s += stepNumber + postfix;
 				} else {
-					s += prefix + stepnumber + postfix;
+					s += prefix + stepNumber + postfix;
 				}
 				if (septext != undefined) {
 					s += septext;
