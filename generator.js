@@ -365,7 +365,7 @@ var generator = (function ($) {
 				'subtitles',
 				'cc',
 				'audiodescription',
-				'englishaudio',
+				'englishaudio'
 			];
 			
 			// Initialise buckets for each group
@@ -402,11 +402,15 @@ var generator = (function ($) {
 		// Function to generate the short version
 		generateshort: function ()
 		{
+			// Start the result string
 			var s = '';
+			
+			// Determine the access type
 			var accessType = $('#accessshort input:checked').val();
 			
+			// Determine if the step-free or wheelchair access is by a separate route
 			var separateRoute = false;
-			if ($('#accessshort_wa')[0].checked || $('#accessshort_sf')[0].checked) {
+			if (accessType == 'wa' || accessType == 'sf') {
 				separateRoute = $('#separateaccessshort_yes')[0].checked;
 			}
 			
