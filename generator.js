@@ -434,7 +434,7 @@ var generator = (function ($) {
 				var septext = ' to the main entrance';
 			}
 			
-			if (accessType != undefined && accessType != "" && stepNumber != "" && stepNumber != undefined) {
+			if (accessType != undefined && accessType != "" && stepNumber !== "") {
 				s += " and ";
 				prefix = "";
 			} else if (accessType != undefined && accessType != "") {
